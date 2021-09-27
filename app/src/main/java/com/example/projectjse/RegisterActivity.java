@@ -11,10 +11,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.HashMap;
 import java.util.Map;
 
-public class SignupActivity extends AppCompatActivity implements View.OnClickListener {
+public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
     // XML Variables
     private TextView registerUser;
@@ -102,7 +107,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         mAuth.createUserWithEmailAndPassword(email, password) // Create a new user in the Firebase database with Email and Password
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) { // Has user been registered successfully?
-                        Toast.makeText(SignupActivity.this, "Account successfully registered!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(RegisterActivity.this, "Account successfully registered!", Toast.LENGTH_LONG).show();
                         userID = mAuth.getCurrentUser().getUid();
                         DocumentReference documentReference = fStore.collection("users").document(userID);
                         Map<String, Object> user = new HashMap<>();
@@ -116,13 +121,13 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                             }
                         });
 
-                        UserInformation users = new UserInformation(email);
+                        //UserInformation users = new UserInformation(email);
 
-                        startActivity(new Intent(SignupActivity.this, LoginActivity.class)); // Return to main class
+                        startActivity(new Intent(RegisterActivity.this, LoginActivity.class)); // Return to main class
 
 
                     } else {
-                        Toast.makeText(SignupActivity.this, "Error! Something went wrong!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(RegisterActivity.this, "Error! Something went wrong!", Toast.LENGTH_LONG).show();
                     }
                 });
     }

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "903001258493",
+    "project_id": "collegetwitter-4b841",
+    "storage_bucket": "collegetwitter-4b841.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:903001258493:android:a415a06f1bb008b0c20194",
+        "android_client_info": {
+          "package_name": "com.example.projectjse"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "903001258493-hfqilipa0bjptp0fot4cu5f7n0h16h5j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCt0zknpS6N8BzQFQmckh0aKqX1PO3PrMw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "903001258493-hfqilipa0bjptp0fot4cu5f7n0h16h5j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
