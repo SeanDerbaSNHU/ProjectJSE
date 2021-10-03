@@ -32,6 +32,7 @@ public class ProfileActivity extends AppCompatActivity {
     public void openActivity(){
         Intent intent = new Intent(this, MainFeedActivity.class);
         startActivity(intent);
+        //
     }public void openActivity2(){
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
