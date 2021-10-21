@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/layout/activity_main_feed.xml" value="0.1" />
+        <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/layout/main_nav_drawer.xml" value="0.48703703703703705" />
+        <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/layout/main_toolbar.xml" value="0.17806484295845998" />
         <entry key="..\:/Users/cardb/AndroidStudioProjects/ProjectJSE/app/src/main/res/layout/activity_main_feed.xml" value="0.2" />
         <entry key="..\:/Users/cardb/AndroidStudioProjects/ProjectJSE/app/src/main/res/layout/activity_profile.xml" value="0.264" />
         <entry key="..\:/Users/cardb/AndroidStudioProjects/ProjectJSE/app/src/main/res/layout/activity_settings.xml" value="0.2" />
@@ -13,7 +16,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
