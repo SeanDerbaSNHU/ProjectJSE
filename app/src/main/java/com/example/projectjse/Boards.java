@@ -1,24 +1,23 @@
 package com.example.projectjse;
 
+import static com.example.projectjse.MainFeedActivity.redirectActivity;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
-public class Settings extends AppCompatActivity {
+public class Boards extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_boards);
 
         drawerLayout = findViewById(R.id.drawer_layout);
-
     }
 
     public void ClickMenu(View view) {
@@ -38,7 +37,7 @@ public class Settings extends AppCompatActivity {
     }
 
     public void ClickBoards(View view) {
-        MainFeedActivity.redirectActivity(this, Settings.class);
+        recreate();
     }
 
     public void ClickSavedPosts(View view) {
@@ -46,7 +45,7 @@ public class Settings extends AppCompatActivity {
     }
 
     public void ClickSettings(View view) {
-        recreate();
+        MainFeedActivity.redirectActivity(this, Settings.class);
     }
 
     public void ClickLogout(View view) {
