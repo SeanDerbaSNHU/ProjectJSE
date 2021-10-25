@@ -1,40 +1,65 @@
 package com.example.projectjse;
 
-import androidx.appcompat.app.AppCompatActivity;
+import static com.example.projectjse.MainFeedActivity.redirectActivity;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
+
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 public class ProfileActivity extends AppCompatActivity {
-    private Button Back;
-    private Button logOut;
+
+    DrawerLayout drawerLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        Back = (Button) findViewById(R.id.BackButtonPro);
-        Back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openActivity();
-            }
-        });
-        logOut = (Button) findViewById(R.id.logOutButton);
-        logOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openActivity2();
-            }
-        });
+
+        drawerLayout = findViewById(R.id.drawer_layout);
     }
-    public void openActivity(){
-        Intent intent = new Intent(this, MainFeedActivity.class);
-        startActivity(intent);
-        //
-    }public void openActivity2(){
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
+
+    public void ClickMenu(View view) {
+        MainFeedActivity.openDrawer(drawerLayout);
+    }
+
+    public void ClickLogo(View view) {
+        MainFeedActivity.closeDrawer(drawerLayout);
+    }
+
+    public void ClickHome(View view) {
+        MainFeedActivity.redirectActivity(this, MainFeedActivity.class);
+    }
+
+    public void ClickMyAccount(View view) {
+        recreate();
+    }
+
+    public void ClickBoards(View view) {
+        MainFeedActivity.redirectActivity(this, Boards.class);
+    }
+
+    public void ClickSavedPosts(View view) {
+        MainFeedActivity.redirectActivity(this, SavedPosts.class);
+    }
+
+    public void ClickSettings(View view) {
+        MainFeedActivity.redirectActivity(this, Settings.class);
+    }
+
+    public void ClickLogout(View view) {
+        MainFeedActivity.logout(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MainFeedActivity.closeDrawer(drawerLayout);
     }
 }

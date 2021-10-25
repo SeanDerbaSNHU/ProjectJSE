@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjectJSE">
         <activity
+            android:name=".SavedPosts"
+            android:exported="false" />
+        <activity
+            android:name=".Boards"
+            android:exported="false" />
+        <activity
             android:name=".ProfileActivity"
             android:exported="true" />
         <activity
