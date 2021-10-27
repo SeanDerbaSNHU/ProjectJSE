@@ -14,14 +14,20 @@ import android.view.View;
 import android.widget.Button;
 
 public class MainFeedActivity extends AppCompatActivity {
-
+    private Button post;
     DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_feed);
-
+        post = (Button) findViewById(R.id.postButton);
+        post.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openActivity2();
+            }
+        });
         drawerLayout = findViewById(R.id.drawer_layout);
         }
 
@@ -111,5 +117,9 @@ public class MainFeedActivity extends AppCompatActivity {
         super.onPause();
         //Close drawer
         closeDrawer(drawerLayout);
+    }
+    public void openActivity2(){
+        Intent intent = new Intent(this, PostActivity.class);
+        startActivity(intent);
     }
 }
