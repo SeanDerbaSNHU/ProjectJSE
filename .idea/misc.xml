@@ -18,6 +18,10 @@
         <entry key="..\:/Users/cardb/AndroidStudioProjects/ProjectJSE/app/src/main/res/layout/settings.xml" value="0.2" />
         <entry key="..\:/Users/seand/AndroidStudioProjects/ProjectJSE/app/src/main/res/layout/activity_login.xml" value="0.1793478260869565" />
         <entry key="..\:/Users/seand/AndroidStudioProjects/ProjectJSE/app/src/main/res/layout/activity_register.xml" value="0.1793478260869565" />
+        <entry key="app/src/main/res/layout/activity_main_feed.xml" value="0.18333333333333332" />
+        <entry key="app/src/main/res/layout/activity_profile.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/main_nav_drawer.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/main_toolbar.xml" value="0.18333333333333332" />
       </map>
     </option>
   </component>
