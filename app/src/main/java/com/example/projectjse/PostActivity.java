@@ -36,7 +36,7 @@ public class PostActivity extends AppCompatActivity {
     private Button confirmBut;
     private FirebaseAuth mAuth;
 
-
+    //
     private static final String USER_KEY = "user";
     private EditText textPost;
     private static final String TEXT_KEY = "text";
