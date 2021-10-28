@@ -21,13 +21,7 @@ public class MainFeedActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_feed);
-        post = (Button) findViewById(R.id.postButton);
-        post.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openActivity2();
-            }
-        });
+
         drawerLayout = findViewById(R.id.drawer_layout);
         }
 
@@ -71,6 +65,9 @@ public class MainFeedActivity extends AppCompatActivity {
 
     public void ClickSettings(View view){
         redirectActivity(this, Settings.class);
+    }
+    public void ClickAdd(View view){
+        redirectActivity(this, PostActivity.class);
     }
 
     public void ClickLogout(View view){
@@ -118,8 +115,5 @@ public class MainFeedActivity extends AppCompatActivity {
         //Close drawer
         closeDrawer(drawerLayout);
     }
-    public void openActivity2(){
-        Intent intent = new Intent(this, PostActivity.class);
-        startActivity(intent);
-    }
+
 }

@@ -26,6 +26,8 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="ClickAdd"
         android:src="@drawable/ic_add"/>
+
 
 </LinearLayout>
