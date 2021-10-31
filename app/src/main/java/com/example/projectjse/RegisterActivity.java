@@ -16,6 +16,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,7 +26,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     // XML Variables
     private TextView registerUser;
-    private EditText editEmail, editPassword, editPasswordConfirm;
+    private EditText editEmail, editPassword, editPasswordConfirm, editUser;
     private String userID;
 
     // Firebase Variables
@@ -45,6 +48,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         registerUser.setOnClickListener(this);
 
         editEmail = (EditText) findViewById(R.id.emailBox);
+        editUser = (EditText) findViewById(R.id.usernameBox);
         editPassword = (EditText) findViewById(R.id.password);
         editPasswordConfirm = (EditText) findViewById(R.id.editPasswordConfirm);
 
@@ -65,6 +69,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         String email = editEmail.getText().toString().trim();
         String password = editPassword.getText().toString().trim();
         String passwordCnfm = editPasswordConfirm.getText().toString().trim();
+        String username = editUser.getText().toString().trim();
 
         // Case Checking -->>
 
@@ -111,7 +116,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         userID = mAuth.getCurrentUser().getUid();
                         DocumentReference documentReference = fStore.collection("users").document(userID);
                         Map<String, Object> user = new HashMap<>();
-                        user.put("email", editEmail.getText().toString().trim());
+                        user.put("email", email);
+                        user.put("username", username);
+                        user.put("userID", userID);
 
 
                         documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() { // Adds the Document users on Firebase with user information
@@ -123,7 +130,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                         //UserInformation users = new UserInformation(email);
 
-                        startActivity(new Intent(RegisterActivity.this, LoginActivity.class)); // Return to main class
+                        startActivity(new Intent(RegisterActivity.this, LoginActivity.class)); // Return to login class
 
 
                     } else {
