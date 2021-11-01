@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
@@ -21,14 +22,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     //FirebaseConnection newConnection;
 
     // Firebase Variables
+
     private FirebaseAuth mAuth;
     // Firebase Variables End
 
-    private Button register;
+    private Button registerBtn;
     private EditText editUsername;      // email field
     private EditText editPassword;      // password field
     private Button signIn;          // Sign-in button
-    private Button createAccount;   // Create-Account button
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +39,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
         // Firebase Start
-        register = (Button) findViewById(R.id.CreateAccountButton);
-        register.setOnClickListener(this);
+        registerBtn = (Button) findViewById(R.id.CreateAccountButton);
+        registerBtn.setOnClickListener(this);
         mAuth = FirebaseAuth.getInstance();
 
         // Firebase End

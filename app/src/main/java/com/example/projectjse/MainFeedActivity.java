@@ -74,6 +74,10 @@ public class MainFeedActivity extends AppCompatActivity {
         logout(this);
     }
 
+    public void ClickSearch(View view){
+        MainFeedActivity.redirectActivity(this, SearchActivity.class);
+    }
+
     public static void logout(Activity activity) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 
