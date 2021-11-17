@@ -13,15 +13,23 @@
         android:onClick="ClickMenu"
         android:src="@drawable/ic_menu"/>
 
-    <TextView
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Something goes here"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textAlignment="center"
-        android:textColor="#636363"/>
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:orientation="horizontal">
+
+        <SearchView
+            android:id="@+id/searchView"
+            android:layout_width="275dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="5dp"
+            android:textAlignment="center"
+            android:textColor="#636363" />
+
+    </LinearLayout>
 
     <ImageView
         android:layout_width="wrap_content"
