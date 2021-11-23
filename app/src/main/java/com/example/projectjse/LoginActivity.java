@@ -9,6 +9,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,10 +27,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private FirebaseAuth mAuth;
     // Firebase Variables End
 
-    private Button register;
+    private TextView register;
     private EditText editUsername;      // email field
     private EditText editPassword;      // password field
-    private Button signIn;          // Sign-in button
+    private TextView signIn;          // Sign-in button
     private Button createAccount;   // Create-Account button
 
     @Override
@@ -39,7 +40,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
         // Firebase Start
-        register = (Button) findViewById(R.id.CreateAccountButton);
+        register = (TextView) findViewById(R.id.CreateAccountButton);
         register.setOnClickListener(this);
         mAuth = FirebaseAuth.getInstance();
 
