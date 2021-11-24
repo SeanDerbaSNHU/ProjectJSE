@@ -60,6 +60,7 @@ public class PostActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private String currentPhotoPath;
     private static final String USER_KEY = "user";
+    private static final String PIC_KEY = "pic";
     private EditText textPost;
     private static final String TEXT_KEY = "text";
     private String userResult;
@@ -89,10 +90,10 @@ public class PostActivity extends AppCompatActivity {
                 String hold = Integer.toString(int_random);
 
                 text = textPost.getText().toString();
-                Map<String, Object> newContact = new HashMap<>();
-                newContact.put(TEXT_KEY, text);
-                newContact.put(USER_KEY, currentID);
-                db.collection("posts").document(hold).set(newContact)
+                Map<String, Object> newPost = new HashMap<>();
+                newPost.put(TEXT_KEY, text);
+                newPost.put(USER_KEY, currentID);
+                db.collection("posts").document(hold).set(newPost)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
@@ -136,7 +137,9 @@ public class PostActivity extends AppCompatActivity {
         Date now = new Date();
         String fileName = formatter.format(now);
         storageReference = FirebaseStorage.getInstance().getReference("pictures/"+fileName);
-
+        Map<String, Object> newPost = new HashMap<>();
+        newPost.put(PIC_KEY, fileName);
+        db.collection("pic").document(fileName).set(newPost);
 
         storageReference.putFile(imageUri)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
