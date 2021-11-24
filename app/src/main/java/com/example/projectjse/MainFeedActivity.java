@@ -30,6 +30,7 @@ import java.util.Random;
 public class MainFeedActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private Button post;
+
     private String hold;
     private Button loadButton;
     Random rand = new Random();
@@ -38,27 +39,10 @@ public class MainFeedActivity extends AppCompatActivity {
     private String TAG = "MainActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getPosts();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_feed);
         TextView textView = (TextView)findViewById(R.id.postDisplay);
-        db = FirebaseFirestore.getInstance();
-        db.collection("posts")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            int i = 0;
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                 documents.add(document.getId());
-                                 i++;
-
-                            }
-                        } else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
-                        }
-                    }
-                });
         loadButton = (Button) findViewById(R.id.refreshButton);
         loadButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -176,6 +160,26 @@ public class MainFeedActivity extends AppCompatActivity {
         super.onPause();
         //Close drawer
         closeDrawer(drawerLayout);
+    }
+    private void getPosts(){
+        db = FirebaseFirestore.getInstance();
+        db.collection("posts")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            int i = 0;
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                documents.add(document.getId());
+                                i++;
+
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
     }
 
 }
