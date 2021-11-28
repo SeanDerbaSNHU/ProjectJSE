@@ -40,6 +40,7 @@ public class MainFeedActivity extends AppCompatActivity {
     private String hold;
     private Button loadButton;
     private Button photoButton;
+
     private ImageView picView;
     private ArrayList<String> picturesList = new ArrayList<String>();
     Random rand = new Random();
