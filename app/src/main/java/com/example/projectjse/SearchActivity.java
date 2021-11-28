@@ -45,6 +45,7 @@ public class SearchActivity extends AppCompatActivity {
 
         userList = new ArrayList<String>();
         userList.add("test");
+
         fetchAllUsers();
         setAdaptor();
     }
