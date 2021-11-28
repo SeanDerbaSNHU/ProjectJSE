@@ -9,28 +9,29 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
     // Temp variable, delete later:
     //FirebaseConnection newConnection;
 
     // Firebase Variables
-
     private FirebaseAuth mAuth;
     // Firebase Variables End
 
-    private Button registerBtn;
+    private TextView register;
     private EditText editUsername;      // email field
     private EditText editPassword;      // password field
-    private Button signIn;          // Sign-in button
-
+    private TextView signIn;          // Sign-in button
+    private Button createAccount;   // Create-Account button
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +40,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
         // Firebase Start
-        registerBtn = (Button) findViewById(R.id.CreateAccountButton);
-        registerBtn.setOnClickListener(this);
+        register = (TextView) findViewById(R.id.CreateAccountButton);
+        register.setOnClickListener(this);
         mAuth = FirebaseAuth.getInstance();
 
         // Firebase End

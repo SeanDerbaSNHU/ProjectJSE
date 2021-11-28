@@ -1,26 +1,97 @@
 package com.example.projectjse;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class MainFeedActivity extends AppCompatActivity {
+    private FirebaseFirestore db;
+    private FirebaseStorage storage = FirebaseStorage.getInstance();
     private Button post;
-    DrawerLayout drawerLayout;
 
+    private String hold;
+    private Button loadButton;
+    private Button photoButton;
+
+    private ImageView picView;
+    private ArrayList<String> picturesList = new ArrayList<String>();
+    Random rand = new Random();
+    DrawerLayout drawerLayout;
+    private ArrayList<String> documents = new ArrayList<String>();
+    private String TAG = "MainActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getPosts();
+        getPhotos();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_feed);
+        TextView textView = (TextView)findViewById(R.id.postDisplay);
+        picView = (ImageView) findViewById(R.id.showImage);
+        loadButton = (Button) findViewById(R.id.refreshButton);
+        photoButton = (Button) findViewById(R.id.photoBtn);
+        photoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String txt = " ";
+                int int_random = rand.nextInt(picturesList.size());
+                String ID = picturesList.get(int_random);
+                StorageReference storageRef = storage.getReference().child("pictures").child(ID);
+                GlideApp.with(MainFeedActivity.this)
+                        .load(storageRef)
+                        .into(picView);
+            }
+        });
+        loadButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int int_random = rand.nextInt(documents.size());
+                DocumentReference docRef = db.collection("posts").document(documents.get(int_random));
+                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                textView.setText(document.get("text").toString());
+                            } else {
+                                Log.d(TAG, "No such document");
+                            }
+                        } else {
+                            Log.d(TAG, "get failed with ", task.getException());
+                        }
+
+                    }
+                });
+            }
+        });
 
         drawerLayout = findViewById(R.id.drawer_layout);
         }
@@ -118,6 +189,46 @@ public class MainFeedActivity extends AppCompatActivity {
         super.onPause();
         //Close drawer
         closeDrawer(drawerLayout);
+    }
+    private void getPosts(){
+        db = FirebaseFirestore.getInstance();
+        db.collection("posts")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            int i = 0;
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                documents.add(document.getId());
+                                i++;
+
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+    }
+    private void getPhotos() {
+        db = FirebaseFirestore.getInstance();
+        db.collection("pic")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            int i = 0;
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                picturesList.add(document.getId());
+                                i++;
+
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
     }
 
 }

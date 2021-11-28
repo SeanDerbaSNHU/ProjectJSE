@@ -19,7 +19,7 @@
         <ScrollView
             android:id="@+id/Feed"
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="475dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -31,6 +31,30 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical" />
         </ScrollView>
+
+        <TextView
+            android:id="@+id/postDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
+        <Button
+            android:id="@+id/refreshButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Refresh" />
+
+        <Button
+            android:id="@+id/photoBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+
+        <ImageView
+            android:id="@+id/showImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:srcCompat="@tools:sample/avatars" />
 
     </LinearLayout>
 
