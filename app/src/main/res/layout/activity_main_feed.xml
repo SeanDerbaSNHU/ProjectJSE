@@ -16,21 +16,10 @@
         <include
             layout="@layout/main_toolbar"/>
 
-        <ScrollView
-            android:id="@+id/Feed"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewPosts"
             android:layout_width="match_parent"
-            android:layout_height="475dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="SpeakableTextPresentCheck">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" />
-        </ScrollView>
+            android:layout_height="410dp" />
 
         <TextView
             android:id="@+id/postDisplay"

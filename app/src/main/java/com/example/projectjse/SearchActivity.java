@@ -47,7 +47,7 @@ public class SearchActivity extends AppCompatActivity {
         userList.add("test");
 
         fetchAllUsers();
-        setAdaptor();
+        //setAdaptor();
     }
 
     public void searchOnClick(View view){
@@ -66,17 +66,17 @@ public class SearchActivity extends AppCompatActivity {
                         }
                     }
                 });
-        recyclerAdapter adapter = new recyclerAdapter(userList);
-        recyclerView.swapAdapter(adapter, false);
+       // recyclerAdapter adapter = new recyclerAdapter(userList);
+       // recyclerView.swapAdapter(adapter, false);
     }
 
-    private void setAdaptor(){
+   /* private void setAdaptor(){
         recyclerAdapter adapter = new recyclerAdapter(userList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
-    }
+    } */
 
     private void fetchAllUsers(){
         fStore.collection("users")

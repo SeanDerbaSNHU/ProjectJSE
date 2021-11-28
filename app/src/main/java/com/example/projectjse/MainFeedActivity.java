@@ -15,9 +15,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
 import com.google.firebase.firestore.DocumentReference;
@@ -41,22 +45,31 @@ public class MainFeedActivity extends AppCompatActivity {
     private Button loadButton;
     private Button photoButton;
 
+    private RecyclerView recyclerView;
+
     private ImageView picView;
     private ArrayList<String> picturesList = new ArrayList<String>();
     Random rand = new Random();
     DrawerLayout drawerLayout;
     private ArrayList<String> documents = new ArrayList<String>();
     private String TAG = "MainActivity";
+
+    private ArrayList<Post> PostList = new ArrayList<Post>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerViewPosts);
         getPosts();
         getPhotos();
+        setPostList();
+        setAdapter();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_feed);
         TextView textView = (TextView)findViewById(R.id.postDisplay);
         picView = (ImageView) findViewById(R.id.showImage);
         loadButton = (Button) findViewById(R.id.refreshButton);
         photoButton = (Button) findViewById(R.id.photoBtn);
+
         photoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -230,5 +243,61 @@ public class MainFeedActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    private void setPostList(){
+        db = FirebaseFirestore.getInstance();
+        db.collection("posts")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                String username = document.get("user").toString();
+                                String text = document.get("text").toString();
+                                PostList.add(new Post(username, text));
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+        //getUsersByID();
+    }
+
+    private void getUsersByID() {
+        db = FirebaseFirestore.getInstance();
+        for(int i = 0; i < PostList.size(); i++){
+            DocumentReference docRef = db.collection("users").document((PostList.get(i).postUsername));
+            int finalI = i;
+            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            PostList.get(finalI).postUsername = document.get("username").toString();
+                        } else {
+                            Log.d(TAG, "No such document");
+                        }
+                    } else {
+                        Log.d(TAG, "get failed with ", task.getException());
+                    }
+                }
+            });
+        }
+
+    }
+
+
+    private void setAdapter(){
+        recyclerAdapter adapter = new recyclerAdapter(PostList);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(adapter);
+    }
+
+
 
 }
