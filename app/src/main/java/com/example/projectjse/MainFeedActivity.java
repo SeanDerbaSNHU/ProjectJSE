@@ -59,9 +59,12 @@ public class MainFeedActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+
+        setPostList();
         getPosts();
         getPhotos();
-        setPostList();
+        //testRecycler();
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_feed);
@@ -256,10 +259,11 @@ public class MainFeedActivity extends AppCompatActivity {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 String username = document.get("user").toString();
                                 String text = document.get("text").toString();
-                                PostList.add(new Post(username, text));
+                                PostList.add(new Post("W", "W"));
                             }
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
+                            PostList.add(new Post("fail","fail"));
                         }
                     }
                 });
@@ -299,6 +303,17 @@ public class MainFeedActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
+    private void testRecycler(){
+        PostList.add(new Post("Test", "Test"));
+        PostList.add(new Post("Test", "Test"));
+        PostList.add(new Post("Test", "Test"));
+        PostList.add(new Post("Test", "Test"));
+        PostList.add(new Post("Test", "Test"));
+        PostList.add(new Post("Test", "Test"));
+        PostList.add(new Post("Test", "Test"));
+        PostList.add(new Post("Test", "Test"));
+
+    }
 
 
 }

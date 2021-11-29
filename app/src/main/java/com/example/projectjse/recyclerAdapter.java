@@ -26,8 +26,8 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
 
         public MyViewHolder(final View view){
             super(view);
-            usernameText.findViewById(R.id.textViewUsername);
-            postText.findViewById(R.id.textPostText);
+            usernameText = view.findViewById(R.id.textViewUsername);
+            postText = view.findViewById(R.id.textViewPostText);
 
         }
 
