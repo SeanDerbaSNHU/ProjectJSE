@@ -1,4 +1,6 @@
 package com.example.projectjse;
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -64,6 +66,7 @@ public class PostActivity extends AppCompatActivity {
     private EditText textPost;
     private static final String TEXT_KEY = "text";
     private String userResult;
+    private String username;
     Random rand = new Random();
 
 
@@ -83,6 +86,9 @@ public class PostActivity extends AppCompatActivity {
         picture = findViewById(R.id.imageView);
         uploadPicture = findViewById(R.id.PhotoPost);
         confirmBut = (Button) findViewById(R.id.confirmButton);
+
+        getUsername();
+
         confirmBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,7 +98,10 @@ public class PostActivity extends AppCompatActivity {
                 text = textPost.getText().toString();
                 Map<String, Object> newPost = new HashMap<>();
                 newPost.put(TEXT_KEY, text);
-                newPost.put(USER_KEY, currentID);
+                if(username == null){
+                    username = currentID;
+                }
+                newPost.put(USER_KEY, username);
                 db.collection("posts").document(hold).set(newPost)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
@@ -184,4 +193,26 @@ public class PostActivity extends AppCompatActivity {
             picture.setImageURI(imageUri);
         }
     }
+
+    private void getUsername(){
+        String ID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DocumentReference docRef = db.collection("users").document(ID);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        username = document.get("username").toString();
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
+    }
+
+
 }

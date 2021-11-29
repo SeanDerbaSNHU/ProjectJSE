@@ -18,7 +18,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.241" />
+        app:layout_constraintVertical_bias="0.341" />
+
+    <EditText
+        android:id="@+id/usernameBox"
+        android:layout_width="301dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:hint="Username"
+        android:inputType="textPersonName"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.231" />
 
     <EditText
         android:id="@+id/password"
@@ -32,7 +46,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.371" />
+        app:layout_constraintVertical_bias="0.458" />
 
     <EditText
         android:id="@+id/editPasswordConfirm"
@@ -46,7 +60,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
+        app:layout_constraintVertical_bias="0.59" />
 
     <TextView
         android:id="@+id/textView2"
@@ -83,6 +97,7 @@
         android:id="@+id/registerUser"
         android:layout_width="301dp"
         android:layout_height="52dp"
+        android:onClick="onClick"
         android:text="Create Account"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
@@ -92,7 +107,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.74" />
+        app:layout_constraintVertical_bias="0.72" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
