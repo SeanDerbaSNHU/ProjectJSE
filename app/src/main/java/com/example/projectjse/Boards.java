@@ -52,6 +52,10 @@ public class Boards extends AppCompatActivity {
         MainFeedActivity.logout(this);
     }
 
+    public void ClickSearch(View view){
+        MainFeedActivity.redirectActivity(this, SearchActivity.class);
+    }
+
     @Override
     protected void onPause() {
         super.onPause();
