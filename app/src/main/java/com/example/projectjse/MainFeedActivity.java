@@ -63,7 +63,7 @@ public class MainFeedActivity extends AppCompatActivity {
         setPostList();
         getPosts();
         getPhotos();
-        //testRecycler();
+
 
 
         super.onCreate(savedInstanceState);
@@ -106,7 +106,9 @@ public class MainFeedActivity extends AppCompatActivity {
                         }
 
                     }
+
                 });
+                setAdapter();
             }
         });
 
@@ -259,7 +261,7 @@ public class MainFeedActivity extends AppCompatActivity {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 String username = document.get("user").toString();
                                 String text = document.get("text").toString();
-                                PostList.add(new Post("W", "W"));
+                                PostList.add(new Post(username, text));
                             }
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
@@ -301,18 +303,6 @@ public class MainFeedActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
-    }
-
-    private void testRecycler(){
-        PostList.add(new Post("Test", "Test"));
-        PostList.add(new Post("Test", "Test"));
-        PostList.add(new Post("Test", "Test"));
-        PostList.add(new Post("Test", "Test"));
-        PostList.add(new Post("Test", "Test"));
-        PostList.add(new Post("Test", "Test"));
-        PostList.add(new Post("Test", "Test"));
-        PostList.add(new Post("Test", "Test"));
-
     }
 
 
