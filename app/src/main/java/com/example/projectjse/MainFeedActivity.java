@@ -58,18 +58,19 @@ public class MainFeedActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerViewPosts);
+
         getPosts();
         getPhotos();
         setPostList();
-        setAdapter();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_feed);
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerViewPosts);
+        setAdapter();
         TextView textView = (TextView)findViewById(R.id.postDisplay);
         picView = (ImageView) findViewById(R.id.showImage);
         loadButton = (Button) findViewById(R.id.refreshButton);
         photoButton = (Button) findViewById(R.id.photoBtn);
-
         photoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
