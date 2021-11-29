@@ -98,6 +98,9 @@ public class PostActivity extends AppCompatActivity {
                 text = textPost.getText().toString();
                 Map<String, Object> newPost = new HashMap<>();
                 newPost.put(TEXT_KEY, text);
+                if(username == null){
+                    username = currentID;
+                }
                 newPost.put(USER_KEY, username);
                 db.collection("posts").document(hold).set(newPost)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
