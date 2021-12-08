@@ -13,18 +13,22 @@ import java.util.ArrayList;
 
 public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyViewHolder> {
 
-    private ArrayList<String> usersList;
+    private ArrayList<Post> postList;
 
-    public recyclerAdapter(ArrayList<String> usersList){
-        this.usersList = usersList;
+    public recyclerAdapter(ArrayList<Post> posts){
+        this.postList = posts;
     }
 
+    //list_items implementation
     public class MyViewHolder extends RecyclerView.ViewHolder{
-        private TextView nameTxt;
+        private TextView usernameText;
+        private TextView postText;
 
         public MyViewHolder(final View view){
             super(view);
-            nameTxt = view.findViewById(R.id.textViewSearchUser);
+            usernameText = view.findViewById(R.id.textViewUsername);
+            postText = view.findViewById(R.id.textViewPostText);
+
         }
 
     }
@@ -32,23 +36,24 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
 
 
 
-
+    //Create RecyclerView
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_items, parent, false);
         return new MyViewHolder(itemView);
     }
-
+    //Populate Data
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        String name = usersList.get(position);
-        holder.nameTxt.setText(name);
+        Post post = postList.get(position);
+        holder.usernameText.setText(post.postUsername);
+        holder.postText.setText(post.postText);
     }
-
+    //Return # of objects
     @Override
     public int getItemCount() {
-        return usersList.size();
+        return postList.size();
     }
 
 
