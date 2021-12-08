@@ -260,8 +260,17 @@ public class MainFeedActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 String username = document.get("user").toString();
-                                String text = document.get("text").toString();
-                                PostList.add(new Post(username, text));
+                                String text = "";
+                                if(document.get("text").toString() != null){
+                                    text = document.get("text").toString();
+                                }
+                                if(document.get("pic").toString() != null){
+                                    String imageName = document.get("pic").toString();
+                                    PostList.add(new Post(username, text, imageName));
+                                }
+                                else {
+                                    PostList.add(new Post(username, text));
+                                }
                             }
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());

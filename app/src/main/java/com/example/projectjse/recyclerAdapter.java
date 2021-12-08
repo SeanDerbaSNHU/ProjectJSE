@@ -3,6 +3,7 @@ package com.example.projectjse;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,12 +24,13 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
     public class MyViewHolder extends RecyclerView.ViewHolder{
         private TextView usernameText;
         private TextView postText;
+        private ImageView postImage;
 
         public MyViewHolder(final View view){
             super(view);
             usernameText = view.findViewById(R.id.textViewUsername);
             postText = view.findViewById(R.id.textViewPostText);
-
+            postImage = view.findViewById(R.id.imageViewPost);
         }
 
     }
