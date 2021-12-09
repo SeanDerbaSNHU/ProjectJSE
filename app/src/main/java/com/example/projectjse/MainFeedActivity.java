@@ -42,7 +42,7 @@ public class MainFeedActivity extends AppCompatActivity {
     private Button post;
 
     private String hold;
-    private Button loadButton;
+    private ImageView loadButton;
     private Button photoButton;
 
     private RecyclerView recyclerView;
@@ -72,7 +72,7 @@ public class MainFeedActivity extends AppCompatActivity {
         setAdapter();
 
         picView = (ImageView) findViewById(R.id.showImage);
-        loadButton = (Button) findViewById(R.id.refreshButton);
+        loadButton = (ImageView) findViewById(R.id.refreshButton);
 
 
 
