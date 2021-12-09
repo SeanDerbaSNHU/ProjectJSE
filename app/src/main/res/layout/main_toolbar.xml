@@ -13,23 +13,22 @@
         android:onClick="ClickMenu"
         android:src="@drawable/ic_menu"/>
 
-    <LinearLayout
-        android:layout_width="306dp"
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp">
+        android:layout_weight="1"
+        android:paddingLeft="5dp"
+        android:textAlignment="center"
+        android:textColor="#636363" />
 
-        <SearchView
-            android:id="@+id/searchView"
-            android:layout_width="275dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingLeft="5dp"
-            android:textAlignment="center"
-            android:textColor="#636363" />
-
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/refreshButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:paddingRight="10dp"
+        android:src="@drawable/ic_refresh"/>
 
     <ImageView
         android:layout_width="wrap_content"
