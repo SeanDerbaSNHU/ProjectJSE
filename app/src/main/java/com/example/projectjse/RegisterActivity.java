@@ -33,7 +33,7 @@ import java.util.Map;
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
     // XML Variables
-    private Button registerUser;
+    private TextView registerUser;
     private EditText editEmail, editPassword, editPasswordConfirm, editUsername;
     //private String userID;
 
