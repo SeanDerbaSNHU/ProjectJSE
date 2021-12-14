@@ -3,6 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/drawable/backgroundinputselected.xml" value="0.3212962962962963" />
+        <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/drawable/backgroundinputtask.xml" value="0.3212962962962963" />
+        <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/drawable/backgroundinputunselected.xml" value="0.3212962962962963" />
+        <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/drawable/backgrounditem.xml" value="0.3212962962962963" />
+        <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/layout/activity_login.xml" value="0.1762917933130699" />
+        <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/layout/activity_main_feed.xml" value="0.1762917933130699" />
+        <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/layout/activity_post.xml" value="0.3625" />
+        <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/layout/activity_profile.xml" value="0.1762917933130699" />
+        <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/layout/activity_register.xml" value="0.1762917933130699" />
+        <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/layout/main_nav_drawer.xml" value="0.1762917933130699" />
+        <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/layout/main_toolbar.xml" value="0.1762917933130699" />
         <entry key="..\:/Users/Sean/Desktop/School/Fall 2021/ProjectJSE/app/src/main/res/layout/activity_main_feed.xml" value="0.4041666666666667" />
         <entry key="..\:/Users/Sean/Desktop/School/Fall 2021/ProjectJSE/app/src/main/res/layout/activity_post.xml" value="0.4041666666666667" />
         <entry key="..\:/Users/Sean/Desktop/School/Fall 2021/ProjectJSE/app/src/main/res/layout/activity_profile.xml" value="0.4041666666666667" />
