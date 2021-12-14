@@ -21,23 +21,11 @@
             android:layout_width="match_parent"
             android:layout_height="410dp" />
 
-        <TextView
-            android:id="@+id/postDisplay"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
-
-        <Button
+        <!--<Button
             android:id="@+id/refreshButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Refresh" />
-
-        <Button
-            android:id="@+id/photoBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="Refresh" /> -->
 
         <ImageView
             android:id="@+id/showImage"

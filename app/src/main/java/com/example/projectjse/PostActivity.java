@@ -20,6 +20,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -53,8 +54,8 @@ public class PostActivity extends AppCompatActivity {
     private FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageReference;
     private String text;
-    private Button confirmBut;
-    private Button takePicture;
+    private TextView confirmBut;
+    private TextView takePicture;
     private Button uploadPicture;
     private ImageView picture;
     Uri imageUri;
@@ -84,8 +85,8 @@ public class PostActivity extends AppCompatActivity {
         takePicture = findViewById(R.id.takePhotoBtn);
 
         picture = findViewById(R.id.imageView);
-        uploadPicture = findViewById(R.id.PhotoPost);
-        confirmBut = (Button) findViewById(R.id.confirmButton);
+
+        confirmBut = (TextView) findViewById(R.id.confirmButton);
 
         getUsername();
 
@@ -94,10 +95,14 @@ public class PostActivity extends AppCompatActivity {
             public void onClick(View v) {
                 int int_random = rand.nextInt(10000000);
                 String hold = Integer.toString(int_random);
-
                 text = textPost.getText().toString();
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.CANADA);
+                Date now = new Date();
+                String fileName = formatter.format(now);
+                storageReference = FirebaseStorage.getInstance().getReference("pictures/"+fileName);
                 Map<String, Object> newPost = new HashMap<>();
                 newPost.put(TEXT_KEY, text);
+                newPost.put(PIC_KEY, fileName);
                 if(username == null){
                     username = currentID;
                 }
@@ -128,15 +133,7 @@ public class PostActivity extends AppCompatActivity {
 
             }
         });
-        uploadPicture.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-
-                uploadPicture();
-
-            }
-        });
     }
 
     protected void uploadPicture() {

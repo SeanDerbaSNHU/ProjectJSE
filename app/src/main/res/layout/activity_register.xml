@@ -78,31 +78,33 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.123" />
 
-    <Button
+    <TextView
         android:id="@+id/CancelButton"
-        android:layout_width="301dp"
+        android:layout_width="250dp"
         android:layout_height="52dp"
         android:text="Cancel"
         android:textAllCaps="false"
-        android:textColor="#FFFFFF"
         android:textSize="18sp"
-        app:backgroundTint="#3F51B5"
+        android:background="@drawable/bg_btn"
+        android:gravity="center"
+        android:textColor="#3F51B5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.836" />
 
-    <Button
+    <TextView
         android:id="@+id/registerUser"
-        android:layout_width="301dp"
+        android:layout_width="250dp"
         android:layout_height="52dp"
         android:onClick="onClick"
         android:text="Create Account"
         android:textAllCaps="false"
-        android:textColor="#FFFFFF"
         android:textSize="18sp"
-        app:backgroundTint="#3F51B5"
+        android:background="@drawable/bg_btn"
+        android:gravity="center"
+        android:textColor="#3F51B5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

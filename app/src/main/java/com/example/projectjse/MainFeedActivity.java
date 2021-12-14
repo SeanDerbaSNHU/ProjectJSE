@@ -42,7 +42,7 @@ public class MainFeedActivity extends AppCompatActivity {
     private Button post;
 
     private String hold;
-    private Button loadButton;
+    private ImageView loadButton;
     private Button photoButton;
 
     private RecyclerView recyclerView;
@@ -70,26 +70,23 @@ public class MainFeedActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_feed);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerViewPosts);
         setAdapter();
-        TextView textView = (TextView)findViewById(R.id.postDisplay);
+
         picView = (ImageView) findViewById(R.id.showImage);
-        loadButton = (Button) findViewById(R.id.refreshButton);
-        photoButton = (Button) findViewById(R.id.photoBtn);
-        photoButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String txt = " ";
-                int int_random = rand.nextInt(picturesList.size());
-                String ID = picturesList.get(int_random);
-                StorageReference storageRef = storage.getReference().child("pictures").child(ID);
-                GlideApp.with(MainFeedActivity.this)
-                        .load(storageRef)
-                        .into(picView);
-            }
-        });
+        loadButton = (ImageView) findViewById(R.id.refreshButton);
+
+
+
         loadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int int_random = rand.nextInt(documents.size());
+                String txt = " ";
+                int irandom = rand.nextInt(picturesList.size());
+                String ID = picturesList.get(irandom);
+                StorageReference storageRef = storage.getReference().child("pictures").child(ID);
+                GlideApp.with(MainFeedActivity.this)
+                        .load(storageRef)
+                        .into(picView);
                 DocumentReference docRef = db.collection("posts").document(documents.get(int_random));
                 docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
@@ -97,7 +94,7 @@ public class MainFeedActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             DocumentSnapshot document = task.getResult();
                             if (document.exists()) {
-                                textView.setText(document.get("text").toString());
+                                Log.d(TAG, "Refreshed");
                             } else {
                                 Log.d(TAG, "No such document");
                             }

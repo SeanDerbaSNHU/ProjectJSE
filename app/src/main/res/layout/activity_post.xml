@@ -8,11 +8,16 @@
 
     <EditText
         android:id="@+id/textPostText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="350dp"
+        android:layout_height="200dp"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
+        android:hint="Whats on your mind?"
+        android:textColor="@color/black"
+        android:textColorHint="#B5B5B5"
+        android:paddingLeft="12dp"
+        android:background="@drawable/backgroundinputtask"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -20,39 +25,40 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.107" />
 
-    <Button
+
+    <TextView
         android:id="@+id/confirmButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Post Text"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:text="Post"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        android:background="@drawable/bg_btn"
+        android:gravity="center"
+        android:textColor="#3F51B5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.367" />
+        app:layout_constraintVertical_bias="0.437" />
 
-    <Button
-        android:id="@+id/PhotoPost"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Post Photo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
+    <TextView
         android:id="@+id/takePhotoBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
         android:text="Take Photo"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        android:background="@drawable/bg_btn"
+        android:gravity="center"
+        android:textColor="#3F51B5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.641" />
+        app:layout_constraintVertical_bias="0.546" />
 
     <ImageView
         android:id="@+id/imageView"
