@@ -20,6 +20,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -53,8 +54,8 @@ public class PostActivity extends AppCompatActivity {
     private FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageReference;
     private String text;
-    private Button confirmBut;
-    private Button takePicture;
+    private TextView confirmBut;
+    private TextView takePicture;
     private Button uploadPicture;
     private ImageView picture;
     Uri imageUri;
@@ -85,7 +86,7 @@ public class PostActivity extends AppCompatActivity {
 
         picture = findViewById(R.id.imageView);
 
-        confirmBut = (Button) findViewById(R.id.confirmButton);
+        confirmBut = (TextView) findViewById(R.id.confirmButton);
 
         getUsername();
 

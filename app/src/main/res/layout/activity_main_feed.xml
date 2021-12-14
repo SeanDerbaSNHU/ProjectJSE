@@ -19,19 +19,13 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewPosts"
             android:layout_width="match_parent"
-            android:layout_height="410dp" />
+            android:layout_height="661dp" />
 
         <!--<Button
             android:id="@+id/refreshButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Refresh" /> -->
-
-        <ImageView
-            android:id="@+id/showImage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:srcCompat="@tools:sample/avatars" />
 
     </LinearLayout>
 
