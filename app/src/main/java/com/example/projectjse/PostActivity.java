@@ -66,6 +66,7 @@ public class PostActivity extends AppCompatActivity {
     private static final String PIC_KEY = "pic";
     private EditText textPost;
     private static final String TEXT_KEY = "text";
+    private static final String DATE_KEY = "date";
     private String userResult;
     private String username;
     Random rand = new Random();
@@ -103,6 +104,7 @@ public class PostActivity extends AppCompatActivity {
                 Map<String, Object> newPost = new HashMap<>();
                 newPost.put(TEXT_KEY, text);
                 newPost.put(PIC_KEY, fileName);
+                newPost.put(DATE_KEY, now);
                 if(username == null){
                     username = currentID;
                 }
