@@ -101,8 +101,10 @@ public class PostActivity extends AppCompatActivity {
                 String fileName = formatter.format(now);
                 storageReference = FirebaseStorage.getInstance().getReference("pictures/"+fileName);
                 Map<String, Object> newPost = new HashMap<>();
+                db.collection("pic").document(fileName).set(newPost);
                 newPost.put(TEXT_KEY, text);
                 newPost.put(PIC_KEY, fileName);
+                storageReference.putFile(imageUri);
                 if(username == null){
                     username = currentID;
                 }
@@ -111,6 +113,7 @@ public class PostActivity extends AppCompatActivity {
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
+                                picture.setImageURI(null);
                                 Toast.makeText(PostActivity.this, "posted",
                                         Toast.LENGTH_SHORT).show();
                             }
