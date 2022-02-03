@@ -24,6 +24,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -33,6 +34,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
@@ -40,76 +42,54 @@ public class MainFeedActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private FirebaseStorage storage = FirebaseStorage.getInstance();
     private Button post;
-
     private String hold;
     private ImageView loadButton;
     private Button photoButton;
-
+    private TextView drawerUserName;
     private RecyclerView recyclerView;
-
-    private ImageView picView;
+    //private ImageView picView;
     private ArrayList<String> picturesList = new ArrayList<String>();
     Random rand = new Random();
     DrawerLayout drawerLayout;
     private ArrayList<String> documents = new ArrayList<String>();
     private String TAG = "MainActivity";
-
     private ArrayList<Post> PostList = new ArrayList<Post>();
+    int count = 0;
+    private String userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-
         setPostList();
-        getPosts();
-        getPhotos();
-
-
-
+        //getPosts();
+        //getPhotos();
+        getUserName();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_feed);
+
         recyclerView = (RecyclerView) findViewById(R.id.recyclerViewPosts);
         setAdapter();
 
-        picView = (ImageView) findViewById(R.id.showImage);
+        //picView = (ImageView) findViewById(R.id.showImage);
         loadButton = (ImageView) findViewById(R.id.refreshButton);
-
 
 
         loadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int int_random = rand.nextInt(documents.size());
-                String txt = " ";
-                int irandom = rand.nextInt(picturesList.size());
-                String ID = picturesList.get(irandom);
-                StorageReference storageRef = storage.getReference().child("pictures").child(ID);
-                GlideApp.with(MainFeedActivity.this)
-                        .load(storageRef)
-                        .into(picView);
-                DocumentReference docRef = db.collection("posts").document(documents.get(int_random));
-                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            if (document.exists()) {
-                                Log.d(TAG, "Refreshed");
-                            } else {
-                                Log.d(TAG, "No such document");
-                            }
-                        } else {
-                            Log.d(TAG, "get failed with ", task.getException());
-                        }
-
-                    }
-
-                });
+                //setPostList();
+               // getPosts();
+               // getPhotos();
                 setAdapter();
+
             }
+
         });
 
         drawerLayout = findViewById(R.id.drawer_layout);
+        drawerUserName = findViewById(R.id.drawerTextUserName);
+        //drawerUserName.setText(userName);
+
         }
 
         public void ClickMenu(View view){
@@ -206,6 +186,7 @@ public class MainFeedActivity extends AppCompatActivity {
         //Close drawer
         closeDrawer(drawerLayout);
     }
+
     private void getPosts(){
         db = FirebaseFirestore.getInstance();
         db.collection("posts")
@@ -257,12 +238,21 @@ public class MainFeedActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 String username = document.get("user").toString();
-                                String text = document.get("text").toString();
-                                PostList.add(new Post(username, text));
+                                String text = "";
+                                if(document.get("text") != null){
+                                    text = document.get("text").toString();
+                                }
+                                if(document.get("pic") != null){
+                                    String imageName = document.get("pic").toString();
+                                    PostList.add(new Post(username, text, imageName, Post.LayoutImg));
+                                }
+                                else {
+                                    PostList.add(new Post(username, text, Post.LayoutTxt));
+                                }
                             }
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
-                            PostList.add(new Post("fail","fail"));
+                            //PostList.add(new Post("fail","fail"));
                         }
                     }
                 });
@@ -293,14 +283,32 @@ public class MainFeedActivity extends AppCompatActivity {
 
     }
 
-
-    private void setAdapter(){
-        recyclerAdapter adapter = new recyclerAdapter(PostList);
+       private void setAdapter(){
+        recyclerAdapter adapter = new recyclerAdapter(PostList, this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
     }
 
-
+    public void getUserName() {
+        db = FirebaseFirestore.getInstance();
+        String ID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DocumentReference docRef = db.collection("users").document(ID);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        userName = document.get("username").toString();
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
+    }
 }

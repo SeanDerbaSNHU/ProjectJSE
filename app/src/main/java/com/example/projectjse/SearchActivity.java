@@ -86,7 +86,8 @@ public class SearchActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                userList.add((String)document.get("username"));
+                                userList.add(document.get("username").toString());
+                                userList.add("test");
                             }
                         }
                         else{
