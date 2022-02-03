@@ -244,15 +244,15 @@ public class MainFeedActivity extends AppCompatActivity {
                                 }
                                 if(document.get("pic") != null){
                                     String imageName = document.get("pic").toString();
-                                    PostList.add(new Post(username, text, imageName));
+                                    PostList.add(new Post(username, text, imageName, Post.LayoutImg));
                                 }
                                 else {
-                                    PostList.add(new Post(username, text));
+                                    PostList.add(new Post(username, text, Post.LayoutTxt));
                                 }
                             }
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
-                            PostList.add(new Post("fail","fail"));
+                            //PostList.add(new Post("fail","fail"));
                         }
                     }
                 });

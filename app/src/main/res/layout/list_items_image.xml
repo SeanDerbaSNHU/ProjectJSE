@@ -26,13 +26,12 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="12dp"
         android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/imageViewPost"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewUsername"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewUsername" />
 
     <TextView
         android:id="@+id/blackbar"
@@ -56,5 +55,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/profilepic" />
+
+    <ImageView
+        android:id="@+id/imageViewPost"
+        android:layout_width="220dp"
+        android:layout_height="194dp"
+        android:layout_marginStart="86dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="105dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPostText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
