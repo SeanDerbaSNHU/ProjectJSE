@@ -103,6 +103,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             return;
         }
 
+        // Username must be less than 20 characters to fit in recycler view properly
+        if(username.length() > 20){
+            editUsername.setError("Username must be less than 20 characters");
+            editUsername.requestFocus();
+            return;
+        }
+
         // Is the email a valid email address?
         if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             editEmail.setError("Email must be valid");
