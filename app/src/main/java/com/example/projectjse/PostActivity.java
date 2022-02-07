@@ -69,13 +69,14 @@ public class PostActivity extends AppCompatActivity {
     private static final String DATE_KEY = "date";
     private String userResult;
     private String username;
+    public boolean isGot;
     Random rand = new Random();
 
 
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
-
+        isGot = false;
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         String currentID = currentUser.getUid(); // Get user info this returns the string that is save in user part of database not the actual user string needs to be fixed
 
@@ -104,10 +105,14 @@ public class PostActivity extends AppCompatActivity {
                 Map<String, Object> newPost = new HashMap<>();
                 db.collection("pic").document(fileName).set(newPost);
                 newPost.put(TEXT_KEY, text);
-                newPost.put(PIC_KEY, fileName);
-
+                if(isGot == true) {
+                    newPost.put(PIC_KEY, fileName);
+                    storageReference.putFile(imageUri);
+                }
+                else{
+                    newPost.put(PIC_KEY, null);
+                }
                 newPost.put(DATE_KEY, now);
-
                 if(username == null){
                     username = currentID;
                 }
@@ -135,7 +140,9 @@ public class PostActivity extends AppCompatActivity {
         takePicture.setOnClickListener(new View.OnClickListener() { //takes picture
             @Override
             public void onClick(View v) {
+                isGot = true;
                 selectImage();
+
 
             }
         });
