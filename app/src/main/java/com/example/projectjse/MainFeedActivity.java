@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import java.lang.Thread;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -60,7 +60,13 @@ public class MainFeedActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        setPostList();
+
+        try {
+            setPostList();
+           Thread.sleep(1100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         //getPosts();
         //getPhotos();
         getUserName();
@@ -68,7 +74,10 @@ public class MainFeedActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_feed);
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerViewPosts);
+
         setAdapter();
+
+
 
         //picView = (ImageView) findViewById(R.id.showImage);
         loadButton = (ImageView) findViewById(R.id.refreshButton);
@@ -77,9 +86,15 @@ public class MainFeedActivity extends AppCompatActivity {
         loadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //setPostList();
-               // getPosts();
-               // getPhotos();
+                PostList.clear();
+                try {
+                    setPostList();
+                    Thread.sleep(1100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                // getPosts();
+                // getPhotos();
                 setAdapter();
 
             }
@@ -254,6 +269,7 @@ public class MainFeedActivity extends AppCompatActivity {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                             //PostList.add(new Post("fail","fail"));
                         }
+
                     }
                 });
         //getUsersByID();
@@ -289,6 +305,7 @@ public class MainFeedActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
+
     }
 
     public void getUserName() {

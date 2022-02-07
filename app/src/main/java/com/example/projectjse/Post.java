@@ -37,7 +37,10 @@ public class Post {
         SearchDatabaseForStorageReference();
     }
 
+    protected void finalize()
+    {
 
+    }
     private void SearchDatabaseForStorageReference(){
         StorageReference storageRef = storage.getReference().child("pictures").child(postImageName);
         postImage = storageRef;
