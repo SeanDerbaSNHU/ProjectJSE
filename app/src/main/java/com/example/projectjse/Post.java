@@ -1,5 +1,6 @@
 package com.example.projectjse;
 
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -19,7 +20,14 @@ public class Post {
     public String postUsername;
     public String postText;
     public String postImageName;
+
+    private DocumentReference document;
     private StorageReference postImage;
+
+    private int likes;
+    private String postID;
+    private String datePosted;
+
 
     private FirebaseStorage storage = FirebaseStorage.getInstance();
 
@@ -37,6 +45,11 @@ public class Post {
         SearchDatabaseForStorageReference();
     }
 
+    public Post(DocumentReference document){
+
+    }
+
+
     protected void finalize()
     {
 
@@ -49,6 +62,10 @@ public class Post {
     public StorageReference GetStorageReference(){
         return postImage;
     }
+
+    public void SetDocumentReference(DocumentReference doc){document = doc;}
+
+    public DocumentReference GetDocumentReference(){return document;}
 
     public int getViewType(){return viewType;}
 

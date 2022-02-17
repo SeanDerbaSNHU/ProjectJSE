@@ -142,8 +142,6 @@ public class PostActivity extends AppCompatActivity {
             public void onClick(View v) {
                 isGot = true;
                 selectImage();
-
-
             }
         });
 

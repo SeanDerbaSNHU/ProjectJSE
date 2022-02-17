@@ -4,6 +4,9 @@ import static com.example.projectjse.Post.LayoutImg;
 import static com.example.projectjse.Post.LayoutTxt;
 
 import android.content.Context;
+import android.content.Intent;
+import android.media.Image;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,39 +45,44 @@ public class recyclerAdapter extends RecyclerView.Adapter {
         }
     }
 
-    //list_items implementation
-/*    public class MyViewHolder extends RecyclerView.ViewHolder{
-        private TextView usernameText;
-        private TextView postText;
-        private ImageView postImage;
-
-        public MyViewHolder(final View view){
-            super(view);
-            usernameText = view.findViewById(R.id.textViewUsername);
-            postText = view.findViewById(R.id.textViewPostText);
-            postImage = view.findViewById(R.id.imageViewPost);
-        }
-
-        public void removeImage(){
-
-        }
-
-
-    }*/
-    class LayoutOneViewHolder
-            extends RecyclerView.ViewHolder {
+    //Class for posts with no image
+    class LayoutOneViewHolder extends RecyclerView.ViewHolder
+             {
 
         private TextView usernameText;
         private TextView postText;
-        //private ImageView postImage;
+        private ImageView replyButton;
+        private ImageView likeButton;
 
         public LayoutOneViewHolder(@NonNull View itemView)
         {
             super(itemView);
-
             // Find the Views
             usernameText = itemView.findViewById(R.id.textViewUsername);
             postText = itemView.findViewById(R.id.textViewPostText);
+            replyButton = itemView.findViewById(R.id.commentButton);
+            likeButton = itemView.findViewById(R.id.likeButton);
+            usernameText.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(itemView.getContext(), ViewUserProfileActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("UserName", usernameText.toString());
+                    itemView.getContext().startActivity(i);
+                }
+            });
+            replyButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Bundle bundle = new Bundle();
+                }
+            });
+            likeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
         }
 
         private void setView(String username, String text)
@@ -82,15 +90,16 @@ public class recyclerAdapter extends RecyclerView.Adapter {
             usernameText.setText(username);
             postText.setText(text);
         }
-
     }
 
+    //Class for post with image
     class LayoutTwoViewHolder
             extends RecyclerView.ViewHolder {
 
         private TextView usernameText;
         private TextView postText;
         private ImageView postImage;
+        private ImageView likeButton;
 
         public LayoutTwoViewHolder(@NonNull View itemView)
         {
@@ -100,6 +109,24 @@ public class recyclerAdapter extends RecyclerView.Adapter {
             usernameText = itemView.findViewById(R.id.textViewUsername);
             postText = itemView.findViewById(R.id.textViewPostText);
             postImage = itemView.findViewById(R.id.imageViewPost);
+            likeButton = itemView.findViewById(R.id.likeButton);
+
+            usernameText.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(itemView.getContext(), ViewUserProfileActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("UserName", usernameText.toString());
+                    itemView.getContext().startActivity(i);
+                }
+            });
+
+            likeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
         }
         private void setView(String username, String text,StorageReference postImg,@NonNull RecyclerView.ViewHolder holder )
         {
