@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -52,7 +54,7 @@ public class recyclerAdapter extends RecyclerView.Adapter {
         private TextView usernameText;
         private TextView postText;
         private ImageView replyButton;
-        private ImageView likeButton;
+        //private ToggleButton likeButton;
 
         public LayoutOneViewHolder(@NonNull View itemView)
         {
@@ -61,7 +63,7 @@ public class recyclerAdapter extends RecyclerView.Adapter {
             usernameText = itemView.findViewById(R.id.textViewUsername);
             postText = itemView.findViewById(R.id.textViewPostText);
             replyButton = itemView.findViewById(R.id.commentButton);
-            likeButton = itemView.findViewById(R.id.likeButton);
+            //likeButton = itemView.findViewById(R.id.likeButton);
             usernameText.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -77,12 +79,12 @@ public class recyclerAdapter extends RecyclerView.Adapter {
                     Bundle bundle = new Bundle();
                 }
             });
-            likeButton.setOnClickListener(new View.OnClickListener() {
+            /*likeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
                 }
-            });
+            });*/
         }
 
         private void setView(String username, String text)
@@ -99,7 +101,7 @@ public class recyclerAdapter extends RecyclerView.Adapter {
         private TextView usernameText;
         private TextView postText;
         private ImageView postImage;
-        private ImageView likeButton;
+        //private ToggleButton likeButton;
 
         public LayoutTwoViewHolder(@NonNull View itemView)
         {
@@ -109,7 +111,7 @@ public class recyclerAdapter extends RecyclerView.Adapter {
             usernameText = itemView.findViewById(R.id.textViewUsername);
             postText = itemView.findViewById(R.id.textViewPostText);
             postImage = itemView.findViewById(R.id.imageViewPost);
-            likeButton = itemView.findViewById(R.id.likeButton);
+            //likeButton = itemView.findViewById(R.id.likeButton);
 
             usernameText.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -121,12 +123,12 @@ public class recyclerAdapter extends RecyclerView.Adapter {
                 }
             });
 
-            likeButton.setOnClickListener(new View.OnClickListener() {
+            /*likeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
                 }
-            });
+            });*/
         }
         private void setView(String username, String text,StorageReference postImg,@NonNull RecyclerView.ViewHolder holder )
         {

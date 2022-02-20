@@ -56,20 +56,20 @@ public class PostActivity extends AppCompatActivity {
     private String text;
     private TextView confirmBut;
     private TextView takePicture;
-    private Button uploadPicture;
+    private String fileName;
     private ImageView picture;
     Uri imageUri;
-    private String filename;
     private FirebaseAuth mAuth;
-    private String currentPhotoPath;
     private static final String USER_KEY = "user";
     private static final String PIC_KEY = "pic";
     private EditText textPost;
     private static final String TEXT_KEY = "text";
     private static final String DATE_KEY = "date";
-    private String userResult;
     private String username;
+    private String numID;
+    private String currentID;
     public boolean isGot;
+    private Date now;
     Random rand = new Random();
 
 
@@ -78,63 +78,21 @@ public class PostActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         isGot = false;
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        String currentID = currentUser.getUid(); // Get user info this returns the string that is save in user part of database not the actual user string needs to be fixed
-
+        currentID = currentUser.getUid(); // Get user info this returns the string that is save in user part of database not the actual user string needs to be fixed
         db = FirebaseFirestore.getInstance();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post);
         textPost = findViewById(R.id.textPostText);
         takePicture = findViewById(R.id.takePhotoBtn);
-
         picture = findViewById(R.id.imageView);
-
         confirmBut = (TextView) findViewById(R.id.confirmButton);
-
         getUsername();
+
 
         confirmBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int int_random = rand.nextInt(10000000);
-                String hold = Integer.toString(int_random);
-                text = textPost.getText().toString();
-                SimpleDateFormat formatter = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.CANADA);
-                Date now = new Date();
-                String fileName = formatter.format(now);
-                storageReference = FirebaseStorage.getInstance().getReference("pictures/"+fileName);
-                Map<String, Object> newPost = new HashMap<>();
-                db.collection("pic").document(fileName).set(newPost);
-                newPost.put(TEXT_KEY, text);
-                if(isGot == true) {
-                    newPost.put(PIC_KEY, fileName);
-                    storageReference.putFile(imageUri);
-                }
-                else{
-                    newPost.put(PIC_KEY, null);
-                }
-                newPost.put(DATE_KEY, now);
-                if(username == null){
-                    username = currentID;
-                }
-                newPost.put(USER_KEY, username);
-                db.collection("posts").document(hold).set(newPost)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                picture.setImageURI(null);
-                                Toast.makeText(PostActivity.this, "posted",
-                                        Toast.LENGTH_SHORT).show();
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(PostActivity.this, "ERROR" + e.toString(),
-                                        Toast.LENGTH_SHORT).show();
-                                Log.d("TAG", e.toString());
-                            }
-
-                        });
+                createPost();
             }
         });
         takePicture.setOnClickListener(new View.OnClickListener() { //takes picture
@@ -147,39 +105,50 @@ public class PostActivity extends AppCompatActivity {
 
     }
 
-    protected void uploadPicture() {
-
-
+    private void createPost(){
+        text = textPost.getText().toString();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.CANADA);
-        Date now = new Date();
-        String fileName = formatter.format(now);
+        now = new Date();
+        fileName = formatter.format(now);
         storageReference = FirebaseStorage.getInstance().getReference("pictures/"+fileName);
         Map<String, Object> newPost = new HashMap<>();
-        newPost.put(PIC_KEY, fileName);
-        db.collection("pic").document(fileName).set(newPost);
+        newPost.put(TEXT_KEY, text);
+        if(isGot == true) {
+            newPost.put(PIC_KEY, fileName);
+            storageReference.putFile(imageUri);
+        }
+        else{
+            newPost.put(PIC_KEY, null);
+        }
+        newPost.put(DATE_KEY, now);
+        if(username == null){
+            username = currentID;
+        }
+        newPost.put(USER_KEY, username);
+        addPost(newPost);
+    }
 
-        storageReference.putFile(imageUri)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+    protected void addPost(Map<String, Object> newPost) {
+        //code for comments when i can add it
+        //db.collection("posts").document(hold).collection("replies").add(newPost);
+        db.collection("posts").document().set(newPost)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
+                    public void onSuccess(Void aVoid) {
                         picture.setImageURI(null);
-                        Toast.makeText(PostActivity.this,"Successfully Uploaded",Toast.LENGTH_SHORT).show();
-
-
+                        Toast.makeText(PostActivity.this, "posted",
+                                Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(PostActivity.this, MainFeedActivity.class));
                     }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-
-
-
-                Toast.makeText(PostActivity.this,"Failed to Upload",Toast.LENGTH_SHORT).show();
-
-
-            }
-        });
-
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(PostActivity.this, "ERROR" + e.toString(),
+                                Toast.LENGTH_SHORT).show();
+                        Log.d("TAG", e.toString());
+                    }
+                });
     }
 
     private void selectImage() {
