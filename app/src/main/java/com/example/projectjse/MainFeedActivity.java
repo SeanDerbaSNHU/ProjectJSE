@@ -237,7 +237,7 @@ public class MainFeedActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                String username = document.get("user").toString();
+                               /* String username = document.get("user").toString();
                                 String text = "";
                                 if(document.get("text") != null){
                                     text = document.get("text").toString();
@@ -248,7 +248,8 @@ public class MainFeedActivity extends AppCompatActivity {
                                 }
                                 else {
                                     PostList.add(new Post(username, text, Post.LayoutTxt));
-                                }
+                                }*/
+                                PostList.add(new Post(document));
                             }
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
