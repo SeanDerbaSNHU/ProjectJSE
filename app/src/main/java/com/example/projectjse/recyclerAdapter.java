@@ -109,6 +109,7 @@ public class recyclerAdapter extends RecyclerView.Adapter {
         private TextView usernameText;
         private ImageView userImage;
         private TextView postText;
+        private ImageView replyButton;
         private ImageView postImage;
         //private ToggleButton likeButton;
 
@@ -122,6 +123,7 @@ public class recyclerAdapter extends RecyclerView.Adapter {
             usernameText = itemView.findViewById(R.id.textViewUsername);
             userImage = itemView.findViewById(R.id.userImage);
             postText = itemView.findViewById(R.id.textViewPostText);
+            replyButton = itemView.findViewById(R.id.commentButton);
             postImage = itemView.findViewById(R.id.imageViewPost);
             //likeButton = itemView.findViewById(R.id.likeButton);
 
@@ -131,6 +133,16 @@ public class recyclerAdapter extends RecyclerView.Adapter {
                     Intent i = new Intent(itemView.getContext(), ViewUserProfileActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("UserName", usernameText.toString());
+                    itemView.getContext().startActivity(i);
+                }
+            });
+
+            replyButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(itemView.getContext(), PostActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("ID", postID);
                     itemView.getContext().startActivity(i);
                 }
             });
