@@ -54,7 +54,7 @@ public class recyclerAdapter extends RecyclerView.Adapter {
         private TextView usernameText;
         private TextView postText;
         private ImageView replyButton;
-        //private ToggleButton likeButton;
+        private ToggleButton likeButton;
 
         public LayoutOneViewHolder(@NonNull View itemView)
         {
@@ -63,7 +63,7 @@ public class recyclerAdapter extends RecyclerView.Adapter {
             usernameText = itemView.findViewById(R.id.textViewUsername);
             postText = itemView.findViewById(R.id.textViewPostText);
             replyButton = itemView.findViewById(R.id.commentButton);
-            //likeButton = itemView.findViewById(R.id.likeButton);
+            likeButton = itemView.findViewById(R.id.likeButton);
             usernameText.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -79,12 +79,19 @@ public class recyclerAdapter extends RecyclerView.Adapter {
                     Bundle bundle = new Bundle();
                 }
             });
-            /*likeButton.setOnClickListener(new View.OnClickListener() {
+            likeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if (null != likeButton && likeButton.isChecked()) {
+                        Toast.makeText(itemView.getContext(), "Liked", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(itemView.getContext(), "Unliked", Toast.LENGTH_SHORT).show();
+
+                    }
 
                 }
-            });*/
+            });
         }
 
         private void setView(String username, String text)
@@ -101,7 +108,7 @@ public class recyclerAdapter extends RecyclerView.Adapter {
         private TextView usernameText;
         private TextView postText;
         private ImageView postImage;
-        //private ToggleButton likeButton;
+        private ToggleButton likeButton;
 
         public LayoutTwoViewHolder(@NonNull View itemView)
         {
@@ -111,7 +118,7 @@ public class recyclerAdapter extends RecyclerView.Adapter {
             usernameText = itemView.findViewById(R.id.textViewUsername);
             postText = itemView.findViewById(R.id.textViewPostText);
             postImage = itemView.findViewById(R.id.imageViewPost);
-            //likeButton = itemView.findViewById(R.id.likeButton);
+            likeButton = itemView.findViewById(R.id.likeButton);
 
             usernameText.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -123,12 +130,18 @@ public class recyclerAdapter extends RecyclerView.Adapter {
                 }
             });
 
-            /*likeButton.setOnClickListener(new View.OnClickListener() {
+            likeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if (null != likeButton && likeButton.isChecked()) {
+                        Toast.makeText(itemView.getContext(), "Liked", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(itemView.getContext(), "Unliked", Toast.LENGTH_SHORT).show();
 
+                    }
                 }
-            });*/
+            });
         }
         private void setView(String username, String text,StorageReference postImg,@NonNull RecyclerView.ViewHolder holder )
         {
