@@ -74,6 +74,7 @@ public class recyclerAdapter extends RecyclerView.Adapter {
                     Intent i = new Intent(itemView.getContext(), ViewUserProfileActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("UserName", usernameText.toString());
+                    i.putExtras(bundle);
                     itemView.getContext().startActivity(i);
                 }
             });
@@ -83,6 +84,7 @@ public class recyclerAdapter extends RecyclerView.Adapter {
                     Intent i = new Intent(itemView.getContext(), PostActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("ID", postID);
+                    i.putExtras(bundle);
                     itemView.getContext().startActivity(i);
                 }
             });
@@ -133,6 +135,7 @@ public class recyclerAdapter extends RecyclerView.Adapter {
                     Intent i = new Intent(itemView.getContext(), ViewUserProfileActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("UserName", usernameText.toString());
+                    i.putExtras(bundle);
                     itemView.getContext().startActivity(i);
                 }
             });
@@ -143,6 +146,7 @@ public class recyclerAdapter extends RecyclerView.Adapter {
                     Intent i = new Intent(itemView.getContext(), PostActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("ID", postID);
+                    i.putExtras(bundle);
                     itemView.getContext().startActivity(i);
                 }
             });
