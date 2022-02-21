@@ -59,29 +59,20 @@ public class MainFeedActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
         try {
             setPostList();
            Thread.sleep(1100);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        //getPosts();
-        //getPhotos();
+
         getUserName();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_feed);
-
         recyclerView = (RecyclerView) findViewById(R.id.recyclerViewPosts);
-
         setAdapter();
-
-
-
         //picView = (ImageView) findViewById(R.id.showImage);
         loadButton = (ImageView) findViewById(R.id.refreshButton);
-
 
         loadButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,12 +84,8 @@ public class MainFeedActivity extends AppCompatActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                // getPosts();
-                // getPhotos();
                 setAdapter();
-
             }
-
         });
 
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -148,9 +135,7 @@ public class MainFeedActivity extends AppCompatActivity {
     public void ClickSettings(View view){
         redirectActivity(this, Settings.class);
     }
-    public void ClickAdd(View view){
-        redirectActivity(this, PostActivity.class);
-    }
+    public void ClickAdd(View view){ redirectActivity(this, PostActivity.class); }
 
     public void ClickLogout(View view){
         logout(this);
