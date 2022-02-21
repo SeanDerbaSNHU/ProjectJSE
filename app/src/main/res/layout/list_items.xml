@@ -23,7 +23,7 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/userImage"
                 android:layout_width="50dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="16dp"
@@ -47,7 +47,7 @@
                 android:paddingRight="1dp"
                 android:text="Username"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView4"
+                app:layout_constraintStart_toEndOf="@+id/userImage"
                 app:layout_constraintTop_toTopOf="parent" />
 
 
