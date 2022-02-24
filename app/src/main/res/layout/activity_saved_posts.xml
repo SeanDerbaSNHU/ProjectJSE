@@ -16,13 +16,10 @@
         <include
             layout="@layout/main_toolbar"/>
 
-        <TextView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewSavedPosts"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Saved Posts"
-            android:textSize="50sp"
-            android:textStyle="bold"
-            android:gravity="center"/>
+            android:layout_height="661dp" />
 
     </LinearLayout>
 
