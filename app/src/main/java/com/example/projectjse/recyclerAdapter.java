@@ -55,6 +55,7 @@ public class recyclerAdapter extends RecyclerView.Adapter {
         private TextView postText;
         private ImageView replyButton;
         private ToggleButton likeButton;
+        private ToggleButton savePostButton;
 
         public LayoutOneViewHolder(@NonNull View itemView)
         {
@@ -64,6 +65,7 @@ public class recyclerAdapter extends RecyclerView.Adapter {
             postText = itemView.findViewById(R.id.textViewPostText);
             replyButton = itemView.findViewById(R.id.commentButton);
             likeButton = itemView.findViewById(R.id.likeButton);
+            savePostButton = itemView.findViewById(R.id.savePostButton);
             usernameText.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -87,9 +89,18 @@ public class recyclerAdapter extends RecyclerView.Adapter {
                     }
                     else{
                         Toast.makeText(itemView.getContext(), "Unliked", Toast.LENGTH_SHORT).show();
-
                     }
-
+                }
+            });
+            savePostButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (null != savePostButton && savePostButton.isChecked()) {
+                        Toast.makeText(itemView.getContext(), "Saved", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(itemView.getContext(), "Unsaved", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
         }
@@ -109,6 +120,7 @@ public class recyclerAdapter extends RecyclerView.Adapter {
         private TextView postText;
         private ImageView postImage;
         private ToggleButton likeButton;
+        private ToggleButton savePostButton;
 
         public LayoutTwoViewHolder(@NonNull View itemView)
         {
@@ -119,7 +131,7 @@ public class recyclerAdapter extends RecyclerView.Adapter {
             postText = itemView.findViewById(R.id.textViewPostText);
             postImage = itemView.findViewById(R.id.imageViewPost);
             likeButton = itemView.findViewById(R.id.likeButton);
-
+            savePostButton = itemView.findViewById(R.id.savePostButton);
             usernameText.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -142,6 +154,17 @@ public class recyclerAdapter extends RecyclerView.Adapter {
                     }
                 }
             });
+            savePostButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (null != savePostButton && savePostButton.isChecked()) {
+                        Toast.makeText(itemView.getContext(), "Saved", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(itemView.getContext(), "Unsaved", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
         }
         private void setView(String username, String text,StorageReference postImg,@NonNull RecyclerView.ViewHolder holder )
         {
@@ -152,8 +175,6 @@ public class recyclerAdapter extends RecyclerView.Adapter {
                     .into((ImageView) holder.itemView.findViewById(R.id.imageViewPost));
         }
     }
-
-
 
 
 

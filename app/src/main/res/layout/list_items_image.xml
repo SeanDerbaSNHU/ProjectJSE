@@ -109,12 +109,17 @@
                 android:paddingBottom="8dp"
                 android:src="@drawable/ic_comment" />
 
-            <ImageView
+            <ToggleButton
                 android:id="@+id/savePostButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingBottom="8dp"
+                android:background="@drawable/toggle_selector_save"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:textOff=""
+                android:textOn=""
                 android:src="@drawable/ic_save_post" />
+
 
         </LinearLayout>
 
