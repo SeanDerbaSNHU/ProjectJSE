@@ -2,11 +2,13 @@ package com.example.projectjse;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
 
 public class SavedPosts extends AppCompatActivity {
+    private RecyclerView recyclerView;
 
     DrawerLayout drawerLayout;
 
@@ -14,6 +16,7 @@ public class SavedPosts extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saved_posts);
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerViewSavedPosts);
 
         drawerLayout = findViewById(R.id.drawer_layout);
     }
