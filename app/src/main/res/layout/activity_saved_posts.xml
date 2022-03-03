@@ -15,14 +15,20 @@
 
         <include
             layout="@layout/main_toolbar"/>
-
         <TextView
+            android:id="@+id/mainblackbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Saved Posts"
-            android:textSize="50sp"
-            android:textStyle="bold"
-            android:gravity="center"/>
+            android:layout_height="1dp"
+            android:background="#000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewSavedPosts"
+            android:layout_width="match_parent"
+            android:layout_height="661dp" />
 
     </LinearLayout>
 
