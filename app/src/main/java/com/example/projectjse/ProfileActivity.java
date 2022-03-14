@@ -48,15 +48,16 @@ public class ProfileActivity extends AppCompatActivity {
     public void ClickSavedPosts(View view) {
         MainFeedActivity.redirectActivity(this, SavedPosts.class);
     }
+    public void ClickAdd(View view){
+        MainFeedActivity.redirectActivity(this, PostActivity.class);
 
+    }
     public void ClickSettings(View view) {
         MainFeedActivity.redirectActivity(this, Settings.class);
     }
-
     public void ClickLogout(View view) {
         MainFeedActivity.logout(this);
     }
-
     @Override
     protected void onPause() {
         super.onPause();

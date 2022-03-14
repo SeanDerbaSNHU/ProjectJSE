@@ -1,6 +1,7 @@
 package com.example.projectjse;
 
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -20,12 +21,12 @@ public class Post {
     public String postUsername;
     public String postText;
     public String postImageName;
+    public String postID;
 
-    private DocumentReference document;
+    private QueryDocumentSnapshot document;
     private StorageReference postImage;
 
-    private int likes;
-    private String postID;
+    private String likes;
     private String datePosted;
 
 
@@ -45,8 +46,18 @@ public class Post {
         SearchDatabaseForStorageReference();
     }
 
-    public Post(DocumentReference document){
-
+    public Post(QueryDocumentSnapshot document){
+        this.document = document;
+        viewType = 0;
+        postUsername = document.get("user").toString();
+        postText = document.get("text").toString();
+        if(document.get("pic") != null){
+            viewType = 1;
+            postImageName = document.get("pic").toString();
+            SearchDatabaseForStorageReference();
+        }
+        postID = document.getId();
+        //likes = document.get("likes").toString();
     }
 
 
@@ -63,12 +74,25 @@ public class Post {
         return postImage;
     }
 
-    public void SetDocumentReference(DocumentReference doc){document = doc;}
+    public void SetDocumentReference(QueryDocumentSnapshot doc){document = doc;}
 
-    public DocumentReference GetDocumentReference(){return document;}
+    public QueryDocumentSnapshot GetDocumentReference(){return document;}
+
+    public String getLikes(){
+
+        return document.get("likes").toString();
+    }
+
+    public void setLikes(int x){
+
+    }
+
 
     public int getViewType(){return viewType;}
 
+    public void updatePost(){   //Will update firebase whenever post is changed
+
+    }
 
 
 }

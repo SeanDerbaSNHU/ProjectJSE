@@ -68,6 +68,7 @@ public class PostActivity extends AppCompatActivity {
     private String username;
     private String numID;
     private String currentID;
+    String postID = "nothing";
     public boolean isGot;
     private Date now;
     Random rand = new Random();
@@ -77,6 +78,11 @@ public class PostActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         isGot = false;
+
+        if(getIntent().hasExtra("ID")) {
+            Toast.makeText(this, "I am here", Toast.LENGTH_SHORT);
+            postID = getIntent().getExtras().getString("ID");
+        }
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         currentID = currentUser.getUid(); // Get user info this returns the string that is save in user part of database not the actual user string needs to be fixed
         db = FirebaseFirestore.getInstance();
@@ -131,24 +137,35 @@ public class PostActivity extends AppCompatActivity {
     protected void addPost(Map<String, Object> newPost) {
         //code for comments when i can add it
         //db.collection("posts").document(hold).collection("replies").add(newPost);
-        db.collection("posts").document().set(newPost)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        picture.setImageURI(null);
-                        Toast.makeText(PostActivity.this, "posted",
-                                Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(PostActivity.this, MainFeedActivity.class));
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(PostActivity.this, "ERROR" + e.toString(),
-                                Toast.LENGTH_SHORT).show();
-                        Log.d("TAG", e.toString());
-                    }
-                });
+        if(postID == "nothing") {
+            db.collection("posts").document().set(newPost)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            picture.setImageURI(null);
+                            Toast.makeText(PostActivity.this, "posted", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(PostActivity.this, MainFeedActivity.class));
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(PostActivity.this, "ERROR" + e.toString(), Toast.LENGTH_SHORT).show();
+                            Log.d("TAG", e.toString());
+                        }
+                    });
+        }
+        else {
+            DocumentReference originalPost = db.document(getIntent().getExtras().getString("path"));
+            originalPost.collection("replies").add(newPost).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                @Override
+                public void onSuccess(DocumentReference documentReference) {
+                    Toast.makeText(PostActivity.this, "Commented", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(PostActivity.this, MainFeedActivity.class));
+                }
+            });
+        }
+
     }
 
     private void selectImage() {

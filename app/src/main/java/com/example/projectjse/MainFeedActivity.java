@@ -121,7 +121,7 @@ public class MainFeedActivity extends AppCompatActivity {
     }
 
     public void ClickMyAccount(View view){
-        redirectActivity(this, ProfileActivity.class);
+        startActivity (new Intent(drawerLayout.getContext(), ProfileActivity.class));
     }
 
     public void ClickBoards(View view){
@@ -135,7 +135,7 @@ public class MainFeedActivity extends AppCompatActivity {
     public void ClickSettings(View view){
         redirectActivity(this, Settings.class);
     }
-    public void ClickAdd(View view){ redirectActivity(this, PostActivity.class); }
+    public void ClickAdd(View view){ startActivity(new Intent(this, PostActivity.class)); }
 
     public void ClickLogout(View view){
         logout(this);
@@ -237,7 +237,7 @@ public class MainFeedActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                String username = document.get("user").toString();
+                               /* String username = document.get("user").toString();
                                 String text = "";
                                 if(document.get("text") != null){
                                     text = document.get("text").toString();
@@ -248,7 +248,8 @@ public class MainFeedActivity extends AppCompatActivity {
                                 }
                                 else {
                                     PostList.add(new Post(username, text, Post.LayoutTxt));
-                                }
+                                }*/
+                                PostList.add(new Post(document));
                             }
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
