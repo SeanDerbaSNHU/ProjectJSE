@@ -10,6 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjectJSE">
         <activity
+            android:name=".ThreadActivity"
+            android:exported="false" />
+        <activity
+            android:name=".postThreadActivity"
+            android:exported="false"
+            android:label="@string/title_activity_post_thread"
+            android:theme="@style/Theme.ProjectJSE.NoActionBar" />
+        <activity
             android:name=".ViewUserProfileActivity"
             android:exported="false" />
         <activity
