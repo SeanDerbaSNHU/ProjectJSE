@@ -156,7 +156,8 @@ public class PostActivity extends AppCompatActivity {
                     });
         }
         else {
-            db.collection("posts").document(postID).collection("replies").add(newPost).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            DocumentReference originalPost = db.document(getIntent().getExtras().getString("path"));
+            originalPost.collection("replies").add(newPost).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                 @Override
                 public void onSuccess(DocumentReference documentReference) {
                     Toast.makeText(PostActivity.this, "Commented", Toast.LENGTH_SHORT).show();
