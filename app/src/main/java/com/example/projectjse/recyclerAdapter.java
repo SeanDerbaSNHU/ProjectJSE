@@ -80,6 +80,16 @@ public class recyclerAdapter extends RecyclerView.Adapter {
                     itemView.getContext().startActivity(i);
                 }
             });
+            postText.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(itemView.getContext(), ThreadActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("ID", postID);
+                    i.putExtras(bundle);
+                    itemView.getContext().startActivity(i);
+                }
+            });
             replyButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -158,7 +168,16 @@ public class recyclerAdapter extends RecyclerView.Adapter {
                     itemView.getContext().startActivity(i);
                 }
             });
-
+            postText.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(itemView.getContext(), ThreadActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("ID", postID);
+                    i.putExtras(bundle);
+                    itemView.getContext().startActivity(i);
+                }
+            });
             replyButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

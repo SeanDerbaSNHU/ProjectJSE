@@ -121,7 +121,7 @@ public class MainFeedActivity extends AppCompatActivity {
     }
 
     public void ClickMyAccount(View view){
-        redirectActivity(this, ProfileActivity.class);
+        startActivity (new Intent(drawerLayout.getContext(), ProfileActivity.class));
     }
 
     public void ClickBoards(View view){
@@ -135,7 +135,7 @@ public class MainFeedActivity extends AppCompatActivity {
     public void ClickSettings(View view){
         redirectActivity(this, Settings.class);
     }
-    public void ClickAdd(View view){ redirectActivity(this, PostActivity.class); }
+    public void ClickAdd(View view){ startActivity(new Intent(this, PostActivity.class)); }
 
     public void ClickLogout(View view){
         logout(this);
