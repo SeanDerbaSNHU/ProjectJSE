@@ -19,6 +19,7 @@ import android.widget.ToggleButton;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
@@ -57,6 +58,7 @@ public class recyclerAdapter extends RecyclerView.Adapter {
         private ImageView replyButton;
         private ToggleButton likeButton;
         private ToggleButton savePostButton;
+        private QueryDocumentSnapshot postDocument;
 
         private String postID;
 
@@ -86,6 +88,7 @@ public class recyclerAdapter extends RecyclerView.Adapter {
                     Intent i = new Intent(itemView.getContext(), ThreadActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("ID", postID);
+                    bundle.putString("path", postDocument.getReference().getPath());
                     i.putExtras(bundle);
                     itemView.getContext().startActivity(i);
                 }
@@ -96,6 +99,7 @@ public class recyclerAdapter extends RecyclerView.Adapter {
                     Intent i = new Intent(itemView.getContext(), PostActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("ID", postID);
+                    bundle.putString("path", postDocument.getReference().getPath());
                     i.putExtras(bundle);
                     itemView.getContext().startActivity(i);
                 }
@@ -124,11 +128,12 @@ public class recyclerAdapter extends RecyclerView.Adapter {
             });
         }
 
-        private void setView(String username, String text, String ID)
+        private void setView(String username, String text, String ID, QueryDocumentSnapshot document)
         {
             usernameText.setText(username);
             postText.setText(text);
             postID = ID;
+            postDocument = document;
         }
     }
 
@@ -143,6 +148,7 @@ public class recyclerAdapter extends RecyclerView.Adapter {
         private ImageView postImage;
         private ToggleButton likeButton;
         private ToggleButton savePostButton;
+        private QueryDocumentSnapshot postDocument;
 
         private String postID;
 
@@ -174,6 +180,7 @@ public class recyclerAdapter extends RecyclerView.Adapter {
                     Intent i = new Intent(itemView.getContext(), ThreadActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("ID", postID);
+                    bundle.putString("path", postDocument.getReference().getPath());
                     i.putExtras(bundle);
                     itemView.getContext().startActivity(i);
                 }
@@ -184,6 +191,7 @@ public class recyclerAdapter extends RecyclerView.Adapter {
                     Intent i = new Intent(itemView.getContext(), PostActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("ID", postID);
+                    bundle.putString("path", postDocument.getReference().getPath());
                     i.putExtras(bundle);
                     itemView.getContext().startActivity(i);
                 }
@@ -213,7 +221,7 @@ public class recyclerAdapter extends RecyclerView.Adapter {
                 }
             });
         }
-        private void setView(String username, String text, String ID, StorageReference postImg,@NonNull RecyclerView.ViewHolder holder )
+        private void setView(String username, String text, String ID, StorageReference postImg,@NonNull RecyclerView.ViewHolder holder, QueryDocumentSnapshot document )
         {
             usernameText.setText(username);
             postText.setText(text);
@@ -221,6 +229,7 @@ public class recyclerAdapter extends RecyclerView.Adapter {
             GlideApp.with(context)
                     .load(postImg)
                     .into((ImageView) holder.itemView.findViewById(R.id.imageViewPost));
+            postDocument = document;
         }
     }
 
@@ -262,13 +271,15 @@ public class recyclerAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position)
     {
         String username, text, ID;
+        QueryDocumentSnapshot document;
         switch (postList.get(position).getViewType()) {
             case LayoutTxt:
 
                 username = postList.get(position).postUsername;
                 text = postList.get(position).postText;
                 ID = postList.get(position).postID;
-                ((LayoutOneViewHolder)holder).setView(username, text, ID);
+                document = postList.get(position).GetDocumentReference();
+                ((LayoutOneViewHolder)holder).setView(username, text, ID, document);
                 break;
 
             case LayoutImg:
@@ -276,7 +287,8 @@ public class recyclerAdapter extends RecyclerView.Adapter {
                 text = postList.get(position).postText;
                 ID = postList.get(position).postID;
                 StorageReference img = postList.get(position).GetStorageReference();
-                ((LayoutTwoViewHolder)holder).setView(username, text, ID, img, holder);
+                document = postList.get(position).GetDocumentReference();
+                ((LayoutTwoViewHolder)holder).setView(username, text, ID, img, holder, document);
                 break;
             default:
                 return;

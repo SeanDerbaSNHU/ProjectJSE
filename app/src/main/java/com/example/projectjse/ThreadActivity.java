@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -49,7 +50,8 @@ public class ThreadActivity extends AppCompatActivity {
 
     private void setPostList() {
         db = FirebaseFirestore.getInstance();
-        db.collection("posts").document(postID).collection("replies")
+        DocumentReference originalPost = db.document(getIntent().getExtras().getString("path"));
+        originalPost.collection("replies")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
