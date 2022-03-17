@@ -59,18 +59,12 @@ public class MainFeedActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        try {
-            setPostList();
-           Thread.sleep(1100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
+        setPostList();
         getUserName();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_feed);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerViewPosts);
-        setAdapter();
         //picView = (ImageView) findViewById(R.id.showImage);
         loadButton = (ImageView) findViewById(R.id.refreshButton);
 
@@ -78,13 +72,7 @@ public class MainFeedActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 PostList.clear();
-                try {
                     setPostList();
-                    Thread.sleep(1100);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                setAdapter();
             }
         });
 
@@ -208,6 +196,11 @@ public class MainFeedActivity extends AppCompatActivity {
                 });
     }
     private void getPhotos() {
+        try {
+            wait(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         db = FirebaseFirestore.getInstance();
         db.collection("pic")
                 .get()
@@ -226,9 +219,11 @@ public class MainFeedActivity extends AppCompatActivity {
                         }
                     }
                 });
+
     }
 
     private void setPostList(){
+
         db = FirebaseFirestore.getInstance();
         db.collection("posts")
                 .get()
@@ -249,7 +244,9 @@ public class MainFeedActivity extends AppCompatActivity {
                                 else {
                                     PostList.add(new Post(username, text, Post.LayoutTxt));
                                 }*/
+
                                 PostList.add(new Post(document));
+                                setAdapter();
                             }
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
@@ -258,6 +255,7 @@ public class MainFeedActivity extends AppCompatActivity {
 
                     }
                 });
+
         //getUsersByID();
     }
 
@@ -286,7 +284,8 @@ public class MainFeedActivity extends AppCompatActivity {
     }
 
        private void setAdapter(){
-        recyclerAdapter adapter = new recyclerAdapter(PostList, this);
+
+           recyclerAdapter adapter = new recyclerAdapter(PostList, this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
