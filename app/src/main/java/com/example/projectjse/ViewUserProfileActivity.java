@@ -18,4 +18,10 @@ public class ViewUserProfileActivity extends AppCompatActivity {
         startActivity(new Intent(ViewUserProfileActivity.this, PostActivity.class));
 
     }
+
+    private boolean CheckIfFollowing(){
+        return true;
+    }
+
+
 }
