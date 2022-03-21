@@ -7,13 +7,24 @@
         <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/drawable/backgroundinputtask.xml" value="0.3212962962962963" />
         <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/drawable/backgroundinputunselected.xml" value="0.3212962962962963" />
         <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/drawable/backgrounditem.xml" value="0.3212962962962963" />
+        <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/drawable/ic_direct_message.xml" value="0.3675" />
+        <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/drawable/ic_refresh.xml" value="0.3675" />
+        <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/drawable/ic_save_post.xml" value="0.165" />
+        <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/drawable/ic_saved.xml" value="0.165" />
+        <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/drawable/ic_thumb_up.xml" value="0.1" />
+        <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/drawable/ic_thumb_up_blue.xml" value="0.1" />
+        <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/drawable/toggle_selector.xml" value="0.165" />
         <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/layout/activity_login.xml" value="0.1762917933130699" />
         <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/layout/activity_main_feed.xml" value="0.1762917933130699" />
         <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/layout/activity_post.xml" value="0.3625" />
         <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/layout/activity_profile.xml" value="0.1762917933130699" />
         <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/layout/activity_register.xml" value="0.1762917933130699" />
+        <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/layout/activity_view_user_profile.xml" value="0.33" />
+        <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/layout/list_items.xml" value="0.25" />
+        <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/layout/list_items_image.xml" value="0.25" />
         <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/layout/main_nav_drawer.xml" value="0.1762917933130699" />
         <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/layout/main_toolbar.xml" value="0.1762917933130699" />
+        <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/layout/message_toolbar.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Sean/Desktop/School/Fall 2021/ProjectJSE/app/src/main/res/layout/activity_login.xml" value="0.23072916666666668" />
         <entry key="..\:/Users/Sean/Desktop/School/Fall 2021/ProjectJSE/app/src/main/res/layout/activity_main_feed.xml" value="0.264" />
         <entry key="..\:/Users/Sean/Desktop/School/Fall 2021/ProjectJSE/app/src/main/res/layout/activity_post.xml" value="0.4041666666666667" />
@@ -25,33 +36,17 @@
         <entry key="..\:/Users/Sean/Desktop/School/Fall 2021/ProjectJSE/app/src/main/res/layout/main_nav_drawer.xml" value="0.4041666666666667" />
         <entry key="..\:/Users/cardb/AndroidStudioProjects/ProjectJSE/app/src/main/res/layout/activity_main_feed.xml" value="0.153125" />
         <entry key="..\:/Users/cardb/AndroidStudioProjects/ProjectJSE/app/src/main/res/layout/activity_post.xml" value="0.176" />
-        <entry key="..\:/Users/cardb/AndroidStudioProjects/ProjectJSE/app/src/main/res/layout/activity_profile.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/cardb/AndroidStudioProjects/ProjectJSE/app/src/main/res/layout/activity_saved_posts.xml" value="0.14739583333333334" />
-        <entry key="..\:/Users/cardb/AndroidStudioProjects/ProjectJSE/app/src/main/res/layout/activity_thread.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/cardb/AndroidStudioProjects/ProjectJSE/app/src/main/res/layout/main_nav_drawer.xml" value="0.14739583333333334" />
-        <entry key="..\:/Users/seand/AndroidStudioProjects/ProjectJSE/app/src/main/res/layout/activity_login.xml" value="0.16259057971014493" />
         <entry key="..\:/Users/seand/AndroidStudioProjects/ProjectJSE/app/src/main/res/layout/activity_main_feed.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/seand/AndroidStudioProjects/ProjectJSE/app/src/main/res/layout/activity_post.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/seand/AndroidStudioProjects/ProjectJSE/app/src/main/res/layout/activity_profile.xml" value="0.16757246376811594" />
-        <entry key="..\:/Users/seand/AndroidStudioProjects/ProjectJSE/app/src/main/res/layout/activity_search.xml" value="0.16259057971014493" />
         <entry key="..\:/Users/seand/AndroidStudioProjects/ProjectJSE/app/src/main/res/layout/activity_view_user_profile.xml" value="0.16259057971014493" />
         <entry key="..\:/Users/seand/AndroidStudioProjects/ProjectJSE/app/src/main/res/layout/list_items.xml" value="0.536" />
         <entry key="..\:/Users/seand/AndroidStudioProjects/ProjectJSE/app/src/main/res/layout/list_items_image.xml" value="0.264" />
         <entry key="..\:/Users/seand/AndroidStudioProjects/ProjectJSE/app/src/main/res/layout/main_toolbar.xml" value="0.1716485507246377" />
-        <entry key="app/src/main/res/drawable/ic_saved.xml" value="0.121" />
-        <entry key="app/src/main/res/drawable/ic_saved_blue.xml" value="0.121" />
-        <entry key="app/src/main/res/drawable/ic_thumb_up.xml" value="0.121" />
-        <entry key="app/src/main/res/drawable/ic_thumb_up_blue.xml" value="0.121" />
-        <entry key="app/src/main/res/drawable/toggle_selector.xml" value="0.2445" />
-        <entry key="app/src/main/res/drawable/toggle_selector_save.xml" value="0.2445" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1625" />
-        <entry key="app/src/main/res/layout/activity_main_feed.xml" value="0.334375" />
-        <entry key="app/src/main/res/layout/activity_post.xml" value="0.334375" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_saved_posts.xml" value="0.334375" />
-        <entry key="app/src/main/res/layout/list_items.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/list_items_image.xml" value="0.334375" />
-        <entry key="app/src/main/res/layout/main_toolbar.xml" value="0.334375" />
       </map>
     </option>
   </component>
