@@ -19,16 +19,26 @@ import android.widget.ToggleButton;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class recyclerAdapter extends RecyclerView.Adapter {
-
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private ArrayList<Post> postList;
     private Context context;
+    String path;
+
+
+    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+    String userID = currentUser.getUid();
 
     public recyclerAdapter(ArrayList<Post> posts, Context context){
         this.postList = posts;
@@ -60,6 +70,7 @@ public class recyclerAdapter extends RecyclerView.Adapter {
         private ToggleButton savePostButton;
         private QueryDocumentSnapshot postDocument;
 
+
         private String postID;
 
         public LayoutOneViewHolder(@NonNull View itemView)
@@ -72,6 +83,8 @@ public class recyclerAdapter extends RecyclerView.Adapter {
             replyButton = itemView.findViewById(R.id.commentButton);
             likeButton = itemView.findViewById(R.id.likeButton);
             savePostButton = itemView.findViewById(R.id.savePostButton);
+
+
             usernameText.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -109,9 +122,13 @@ public class recyclerAdapter extends RecyclerView.Adapter {
                 public void onClick(View v) {
                     if (null != likeButton && likeButton.isChecked()) {
                         Toast.makeText(itemView.getContext(), "Liked", Toast.LENGTH_SHORT).show();
+                        db.collection("users").document(userID).update("LikedPosts", FieldValue.arrayUnion(postDocument.getReference().getPath()));
+                        db.collection("posts").document(postID).update("Likes", FieldValue.increment(1));
                     }
                     else{
                         Toast.makeText(itemView.getContext(), "Unliked", Toast.LENGTH_SHORT).show();
+                        db.collection("users").document(userID).update("LikedPosts", FieldValue.arrayRemove(postDocument.getReference().getPath()));
+                        db.collection("posts").document(postID).update("Likes", FieldValue.increment(-1));
                     }
                 }
             });
@@ -120,9 +137,11 @@ public class recyclerAdapter extends RecyclerView.Adapter {
                 public void onClick(View v) {
                     if (null != savePostButton && savePostButton.isChecked()) {
                         Toast.makeText(itemView.getContext(), "Saved", Toast.LENGTH_SHORT).show();
+                        db.collection("users").document(userID).update("SavedPosts", FieldValue.arrayUnion(postDocument.getReference().getPath()));
                     }
                     else{
                         Toast.makeText(itemView.getContext(), "Unsaved", Toast.LENGTH_SHORT).show();
+                        db.collection("users").document(userID).update("SavedPosts", FieldValue.arrayRemove(postDocument.getReference().getPath()));
                     }
                 }
             });
@@ -202,21 +221,37 @@ public class recyclerAdapter extends RecyclerView.Adapter {
                 public void onClick(View v) {
                     if (null != likeButton && likeButton.isChecked()) {
                         Toast.makeText(itemView.getContext(), "Liked", Toast.LENGTH_SHORT).show();
+                        db.collection("users").document(userID).update("LikedPosts", FieldValue.arrayUnion(postDocument.getReference().getPath()));
+                       // List<String> LPosts = (List<String>) Document.get("LikedPosts");
+                       // for(int i = 0; i < LPosts.size(); i++){
+                       //     if (LPosts.contains(postDocument.getReference().getPath().toString()) ) {
+                        //        Toast.makeText(itemView.getContext(), "Already Liked", Toast.LENGTH_SHORT).show();
+                        //    }
+                       // }
+                        db.collection("posts").document(postID).update("Likes", FieldValue.increment(1));
+
                     }
                     else{
                         Toast.makeText(itemView.getContext(), "Unliked", Toast.LENGTH_SHORT).show();
+                        db.collection("users").document(userID).update("LikedPosts", FieldValue.arrayRemove(postDocument.getReference().getPath()));
+                        db.collection("posts").document(postID).update("Likes", FieldValue.increment(-1));
 
                     }
                 }
             });
             savePostButton.setOnClickListener(new View.OnClickListener() {
+
                 @Override
                 public void onClick(View v) {
                     if (null != savePostButton && savePostButton.isChecked()) {
                         Toast.makeText(itemView.getContext(), "Saved", Toast.LENGTH_SHORT).show();
+
+                       db.collection("users").document(userID).update("SavedPosts", FieldValue.arrayUnion(postDocument.getReference().getPath()));
+
                     }
                     else{
                         Toast.makeText(itemView.getContext(), "Unsaved", Toast.LENGTH_SHORT).show();
+                        db.collection("users").document(userID).update("SavedPosts", FieldValue.arrayRemove(postDocument.getReference().getPath()));
                     }
                 }
             });
