@@ -39,7 +39,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -68,6 +71,7 @@ public class PostActivity extends AppCompatActivity {
     private String username;
     private String numID;
     private String currentID;
+    private String userID;
     String postID = "nothing";
     public boolean isGot;
     private Date now;
@@ -84,7 +88,8 @@ public class PostActivity extends AppCompatActivity {
             postID = getIntent().getExtras().getString("ID");
         }
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        currentID = currentUser.getUid(); // Get user info this returns the string that is save in user part of database not the actual user string needs to be fixed
+        userID = currentUser.getUid();
+        currentID = currentUser.getUid();// Get user info this returns the string that is save in user part of database not the actual user string needs to be fixed
         db = FirebaseFirestore.getInstance();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post);
@@ -138,28 +143,23 @@ public class PostActivity extends AppCompatActivity {
         //code for comments when i can add it
         //db.collection("posts").document(hold).collection("replies").add(newPost);
         if(postID == "nothing") {
-            db.collection("posts").document().set(newPost)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            picture.setImageURI(null);
-                            Toast.makeText(PostActivity.this, "posted", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(PostActivity.this, MainFeedActivity.class));
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(PostActivity.this, "ERROR" + e.toString(), Toast.LENGTH_SHORT).show();
-                            Log.d("TAG", e.toString());
-                        }
-                    });
+            db.collection("posts").add(newPost) .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                @Override
+                public void onSuccess(DocumentReference documentReference) {
+                    db.collection("users").document(userID).update("posts", FieldValue.arrayUnion(documentReference));
+                    picture.setImageURI(null);
+                    Toast.makeText(PostActivity.this, "posted", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(PostActivity.this, MainFeedActivity.class));
+                }
+            });
+
         }
         else {
             DocumentReference originalPost = db.document(getIntent().getExtras().getString("path"));
             originalPost.collection("replies").add(newPost).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                 @Override
                 public void onSuccess(DocumentReference documentReference) {
+                    db.collection("users").document(userID).update("replies", FieldValue.arrayUnion(documentReference));
                     Toast.makeText(PostActivity.this, "Commented", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(PostActivity.this, MainFeedActivity.class));
                 }

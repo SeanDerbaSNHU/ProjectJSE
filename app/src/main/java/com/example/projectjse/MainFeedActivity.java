@@ -25,8 +25,10 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -54,6 +56,7 @@ public class MainFeedActivity extends AppCompatActivity {
     private ArrayList<String> documents = new ArrayList<String>();
     private String TAG = "MainActivity";
     private ArrayList<Post> PostList = new ArrayList<Post>();
+    private String userID;
     int count = 0;
     private String userName;
 
@@ -118,6 +121,7 @@ public class MainFeedActivity extends AppCompatActivity {
 
     public void ClickSavedPosts(View view){
         redirectActivity(this, SavedPosts.class);
+
     }
 
     public void ClickSettings(View view){
