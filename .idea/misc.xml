@@ -7,11 +7,18 @@
         <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/drawable/backgroundinputtask.xml" value="0.3212962962962963" />
         <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/drawable/backgroundinputunselected.xml" value="0.3212962962962963" />
         <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/drawable/backgrounditem.xml" value="0.3212962962962963" />
+        <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/drawable/bg_btn.xml" value="0.3675" />
+        <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/drawable/follow_button.xml" value="0.1435" />
+        <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/drawable/ic_profile.xml" value="0.1" />
+        <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/drawable/toggle_selector_save.xml" value="0.1165" />
         <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/layout/activity_login.xml" value="0.1762917933130699" />
         <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/layout/activity_main_feed.xml" value="0.1762917933130699" />
         <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/layout/activity_post.xml" value="0.3625" />
-        <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/layout/activity_profile.xml" value="0.1762917933130699" />
+        <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/layout/activity_profile.xml" value="0.3120494335736354" />
         <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/layout/activity_register.xml" value="0.1762917933130699" />
+        <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/layout/activity_view_user_profile.xml" value="0.4462962962962963" />
+        <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/layout/content_post_thread.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/layout/list_items.xml" value="0.33" />
         <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/layout/main_nav_drawer.xml" value="0.1762917933130699" />
         <entry key="..\:/Users/Davon/StudioProjects/ProjectJSE/app/src/main/res/layout/main_toolbar.xml" value="0.1762917933130699" />
         <entry key="..\:/Users/Sean/Desktop/School/Fall 2021/ProjectJSE/app/src/main/res/layout/activity_login.xml" value="0.23072916666666668" />
