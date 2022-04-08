@@ -341,12 +341,6 @@ public class recyclerAdapter extends RecyclerView.Adapter {
 }
 
 
-
-
-
-
-
-
     /*//Create RecyclerView
     @NonNull
     @Override

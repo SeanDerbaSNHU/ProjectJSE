@@ -42,14 +42,16 @@
                     android:textStyle="bold"
                     android:paddingBottom="16dp"/>
 
-                <Button
+                <ToggleButton
                     android:id="@+id/followButton"
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
-                    android:text="Follow"
-                    android:textSize="16dp"
-                    android:textColor="@drawable/follow_button"
-                    android:textAllCaps="false"/>
+                    android:background="@drawable/follow_button_color"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textOff="Follow"
+                    android:textOn="Following"
+                    android:textSize="16dp" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -138,7 +140,7 @@
                                 android:id="@+id/textView5"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="24dp"
+                                android:layout_marginStart="22dp"
                                 android:layout_marginEnd="44dp"
                                 android:text="Posts"
                                 app:layout_constraintBottom_toBottomOf="parent"
