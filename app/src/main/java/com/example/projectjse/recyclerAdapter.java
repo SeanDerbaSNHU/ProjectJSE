@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -68,7 +69,7 @@ public class recyclerAdapter extends RecyclerView.Adapter {
         private ImageView replyButton;
         private ToggleButton likeButton;
         private ToggleButton savePostButton;
-        private QueryDocumentSnapshot postDocument;
+        private DocumentSnapshot postDocument;
 
 
         private String postID;
@@ -147,7 +148,7 @@ public class recyclerAdapter extends RecyclerView.Adapter {
             });
         }
 
-        private void setView(String username, String text, String ID, QueryDocumentSnapshot document)
+        private void setView(String username, String text, String ID, DocumentSnapshot document)
         {
             usernameText.setText(username);
             postText.setText(text);
@@ -167,7 +168,7 @@ public class recyclerAdapter extends RecyclerView.Adapter {
         private ImageView postImage;
         private ToggleButton likeButton;
         private ToggleButton savePostButton;
-        private QueryDocumentSnapshot postDocument;
+        private DocumentSnapshot postDocument;
 
         private String postID;
 
@@ -256,7 +257,7 @@ public class recyclerAdapter extends RecyclerView.Adapter {
                 }
             });
         }
-        private void setView(String username, String text, String ID, StorageReference postImg,@NonNull RecyclerView.ViewHolder holder, QueryDocumentSnapshot document )
+        private void setView(String username, String text, String ID, StorageReference postImg,@NonNull RecyclerView.ViewHolder holder,DocumentSnapshot document )
         {
             usernameText.setText(username);
             postText.setText(text);
@@ -306,7 +307,7 @@ public class recyclerAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position)
     {
         String username, text, ID;
-        QueryDocumentSnapshot document;
+        DocumentSnapshot document;
         switch (postList.get(position).getViewType()) {
             case LayoutTxt:
 
