@@ -74,6 +74,7 @@ public class SavedPosts extends AppCompatActivity {
                             Post x = new Post(documentSnapshot);
                             PostList.add(x);
                             setAdapter();
+
                         }
 
                     });
