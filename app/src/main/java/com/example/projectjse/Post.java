@@ -1,6 +1,7 @@
 package com.example.projectjse;
 
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -23,7 +24,7 @@ public class Post {
     public String postImageName;
     public String postID;
 
-    private QueryDocumentSnapshot document;
+    private DocumentSnapshot document;
     private StorageReference postImage;
 
     private String likes;
@@ -46,7 +47,7 @@ public class Post {
         SearchDatabaseForStorageReference();
     }
 
-    public Post(QueryDocumentSnapshot document){
+    public Post(DocumentSnapshot document){
         this.document = document;
         viewType = 0;
         postUsername = document.get("user").toString();
@@ -76,7 +77,7 @@ public class Post {
 
     public void SetDocumentReference(QueryDocumentSnapshot doc){document = doc;}
 
-    public QueryDocumentSnapshot GetDocumentReference(){return document;}
+    public DocumentSnapshot GetDocumentReference(){return document;}
 
     public String getLikes(){
 
