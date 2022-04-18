@@ -14,7 +14,7 @@
         android:orientation="vertical">
 
         <include
-            layout="@layout/main_toolbar"/>
+            layout="@layout/saved_post_toolbar"/>
         <TextView
             android:id="@+id/mainblackbar"
             android:layout_width="match_parent"

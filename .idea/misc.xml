@@ -56,17 +56,19 @@
         <entry key="app/src/main/res/drawable/ic_thumb_up_blue.xml" value="0.121" />
         <entry key="app/src/main/res/drawable/toggle_selector.xml" value="0.2445" />
         <entry key="app/src/main/res/drawable/toggle_selector_save.xml" value="0.2445" />
+        <entry key="app/src/main/res/layout/activity_boards.xml" value="0.3359375" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1625" />
         <entry key="app/src/main/res/layout/activity_main_feed.xml" value="0.334375" />
         <entry key="app/src/main/res/layout/activity_post.xml" value="0.334375" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.3359375" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_saved_posts.xml" value="0.334375" />
-        <entry key="app/src/main/res/layout/activity_view_user_profile.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_view_user_profile.xml" value="0.2247191011235955" />
         <entry key="app/src/main/res/layout/list_items.xml" value="0.33" />
         <entry key="app/src/main/res/layout/list_items_image.xml" value="0.334375" />
         <entry key="app/src/main/res/layout/main_toolbar.xml" value="0.334375" />
         <entry key="app/src/main/res/layout/message_toolbar.xml" value="0.3359375" />
+        <entry key="app/src/main/res/layout/saved_post_toolbar.xml" value="0.3359375" />
       </map>
     </option>
   </component>
