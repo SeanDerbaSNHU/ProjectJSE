@@ -67,6 +67,7 @@ public class SavedPosts extends AppCompatActivity {
                             PostList.add(x);
                             setAdapter();
 
+
                         }
 
                     });
