@@ -47,18 +47,10 @@ public class SavedPosts extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         userID = currentUser.getUid();
         setPostList();
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saved_posts);
-
         saveView = (RecyclerView) findViewById(R.id.savedView);
-
-
-
         drawerLayout = findViewById(R.id.drawer_layout);
-
-
-
     }
     private void setPostList(){
         db.collection("users").document(userID).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -74,6 +66,7 @@ public class SavedPosts extends AppCompatActivity {
                             Post x = new Post(documentSnapshot);
                             PostList.add(x);
                             setAdapter();
+
 
                         }
 
