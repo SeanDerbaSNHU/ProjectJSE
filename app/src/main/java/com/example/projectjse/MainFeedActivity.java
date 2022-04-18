@@ -289,7 +289,7 @@ public class MainFeedActivity extends AppCompatActivity {
 
        private void setAdapter(){
 
-           recyclerAdapter adapter = new recyclerAdapter(PostList, this);
+        recyclerAdapter adapter = new recyclerAdapter(PostList, this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());

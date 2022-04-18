@@ -1,8 +1,16 @@
 package com.example.projectjse;
 
+import static com.google.android.gms.common.internal.safeparcel.SafeParcelable.NULL;
+
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -19,6 +27,8 @@ public class Post {
     // is expected in the given item
     private int viewType;
 
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+
     public String postUsername;
     public String postText;
     public String postImageName;
@@ -26,6 +36,10 @@ public class Post {
 
     private DocumentSnapshot document;
     private StorageReference postImage;
+
+    private User user;
+
+    private String userPath;
 
     private String likes;
     private String datePosted;
@@ -59,6 +73,29 @@ public class Post {
         }
         postID = document.getId();
         //likes = document.get("likes").toString();
+        if(document.get("userPath") == null){
+            final String[] x = new String[1];
+            db.collection("users").whereEqualTo("username", postUsername).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    for(QueryDocumentSnapshot document : task.getResult()) {
+                        x[0] = document.getReference().getPath();
+                    }
+                }
+            });
+            document.getReference().update("userPath", x[0]);
+        }
+        else {
+            userPath = document.get("userPath").toString();
+            setUser();
+        }
+        db.collection("users").whereEqualTo("username", postUsername).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                user = new User((task.getResult().getDocuments()).get(0));
+            }
+        });
+
     }
 
 
@@ -87,6 +124,22 @@ public class Post {
     public void setLikes(int x){
 
     }
+
+
+    public void setUser(){
+        /*db.collection("users").whereEqualTo("username", postUsername).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                    user = new User(document);
+                }
+            }
+        });*/
+
+        user = new User(userPath);
+    }
+
+    public User getUser(){return user;}
 
 
     public int getViewType(){return viewType;}

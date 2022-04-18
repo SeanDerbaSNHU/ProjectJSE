@@ -29,7 +29,6 @@
                 <ImageView
                     android:layout_width="163dp"
                     android:layout_height="123dp"
-                    android:onClick="ClickLogo"
                     android:src="@drawable/profilepic"
                     tools:ignore="SpeakableTextPresentCheck" />
 
