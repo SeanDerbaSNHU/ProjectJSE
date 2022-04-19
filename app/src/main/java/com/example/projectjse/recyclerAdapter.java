@@ -91,7 +91,7 @@ public class recyclerAdapter extends RecyclerView.Adapter {
                 public void onClick(View v) {
                     Intent i = new Intent(itemView.getContext(), ViewUserProfileActivity.class);
                     Bundle bundle = new Bundle();
-                    bundle.putString("UserName", usernameText.toString());
+                    bundle.putString("UserName", usernameText.getText().toString());
                     i.putExtras(bundle);
                     itemView.getContext().startActivity(i);
                 }
@@ -189,7 +189,7 @@ public class recyclerAdapter extends RecyclerView.Adapter {
                 public void onClick(View v) {
                     Intent i = new Intent(itemView.getContext(), ViewUserProfileActivity.class);
                     Bundle bundle = new Bundle();
-                    bundle.putString("UserName", usernameText.toString());
+                    bundle.putString("UserName", usernameText.getText().toString());
                     i.putExtras(bundle);
                     itemView.getContext().startActivity(i);
                 }
