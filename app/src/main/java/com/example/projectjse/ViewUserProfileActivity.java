@@ -30,21 +30,42 @@ public class ViewUserProfileActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private ArrayList<Post> PostList = new ArrayList<Post>();
     private String username;
+    private TextView accountName;
+    private TextView followerCount;
+    private int count;
+    private boolean isFollowing = false;
         DrawerLayout drawerLayout;
 
         @Override
         protected void onCreate (Bundle savedInstanceState){
+
+            username = getIntent().getExtras().getString("UserName");
             setPostList();
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_view_user_profile);
             recyclerView = (RecyclerView) findViewById(R.id.profileRecycler);
             followButton = (ToggleButton) findViewById(R.id.followButton);
-
+            followerCount = findViewById(R.id.followerCount);
+            accountName = findViewById(R.id.accountName);
             drawerLayout = findViewById(R.id.drawer_layout);
-            username = getIntent().getStringExtra("UserName");
 
+            accountName.setText(username);
 
+            count = Integer.parseInt(followerCount.getText().toString());
 
+            followButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(isFollowing){
+                        count--;
+                    }
+                    else{
+                        count++;
+                    }
+                    followerCount.setText(String.valueOf(count));
+                    isFollowing = !isFollowing;
+                }
+            });
 
         }
 
@@ -92,7 +113,7 @@ public class ViewUserProfileActivity extends AppCompatActivity {
         }
 
     private void setPostList(){
-
+        username = getIntent().getExtras().getString("UserName");
         db = FirebaseFirestore.getInstance();
         db.collection("posts")
                 .get()
@@ -101,7 +122,8 @@ public class ViewUserProfileActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                if(document.get("user").toString() == username) {
+                                String x = (String) document.get("user");
+                                if(x.equals(username)) {
                                     PostList.add(new Post(document));
                                     setAdapter();
                                 }

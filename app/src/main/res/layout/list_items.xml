@@ -46,6 +46,8 @@
                 android:paddingLeft="1dp"
                 android:paddingRight="1dp"
                 android:text="Username"
+                android:textSize="20sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/userImage"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -64,6 +66,7 @@
             android:paddingStart="12dp"
             android:paddingEnd="1dp"
             android:text="TextView"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
