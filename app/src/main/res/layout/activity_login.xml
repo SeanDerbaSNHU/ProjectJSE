@@ -27,7 +27,7 @@
         android:layout_width="103dp"
         android:layout_height="40dp"
         android:fontFamily="sans-serif"
-        android:text="Sign In,"
+        android:text="Penmen Posts Sign In"
         android:textColor="#000000"
         android:textSize="30sp"
         android:textStyle="bold"
