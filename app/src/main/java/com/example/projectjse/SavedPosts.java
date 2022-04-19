@@ -105,7 +105,7 @@ public class SavedPosts extends AppCompatActivity {
     }
 
     public void ClickBoards(View view) {
-        MainFeedActivity.redirectActivity(this, SavedPosts.class);
+        MainFeedActivity.redirectActivity(this, Boards.class);
     }
 
     public void ClickSavedPosts(View view) {

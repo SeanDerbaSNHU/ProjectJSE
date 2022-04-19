@@ -77,6 +77,7 @@ public class PostActivity extends AppCompatActivity {
     private Date now;
     Random rand = new Random();
 
+    private String userPath;
 
     @Override
 
@@ -136,6 +137,7 @@ public class PostActivity extends AppCompatActivity {
             username = currentID;
         }
         newPost.put(USER_KEY, username);
+        newPost.put("userPath", userPath);
         addPost(newPost);
     }
 
@@ -198,6 +200,7 @@ public class PostActivity extends AppCompatActivity {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         username = document.get("username").toString();
+                        userPath = document.getReference().getPath();
                     } else {
                         Log.d(TAG, "No such document");
                     }
